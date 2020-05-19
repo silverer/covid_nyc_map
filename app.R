@@ -43,6 +43,7 @@ ui <- fluidPage(
                     'Percent uninsured' = 'percent_uninsured',
                     'Percent receiving public assistance' = 'percent_receiving_public_assistance',
                     'High school completion rate' = 'high_school_completion',
+                    'Percent working in managment, arts, sciences' = 'percent_in_mgmt_art_sci',
                     'Poverty rate' = 'poverty_rate'),
                   selected = 'Median income')),
       checkboxInput(inputId = 'show_by_borough',
@@ -62,23 +63,27 @@ ui <- fluidPage(
     # Main panel for displaying outputs ----
     mainPanel(
       
-      # Output: Histogram ----
-      plotOutput(outputId = "correlationPlot"),
-      hr(),
-      br(),
       fluidRow(
+        h4('Density of Demographic/Socioeconomic Variable vs. Density of COVID Outcome'),
+        br(),
         column(6,
                h4(textOutput(outputId = "demo_pretty")),
                plotOutput(outputId = "censusPlot")
         ),
         column(6,
-            h4(textOutput(outputId = "cov_pretty")),
-            plotOutput(outputId = "covPlot")
+               h4(textOutput(outputId = "cov_pretty")),
+               plotOutput(outputId = "covPlot")
         )
       ),
-      
+      h5('Note: NA indicates data not available for a given ZIP code'),
       br(),
-      h5('All data are represented at the ZIP-code level', align = 'center'),
+      hr(),
+      h4('Correlation Between Demographic/Socioeconomic Variable and COVID Outcome'),
+      plotOutput(outputId = "correlationPlot"),
+      br(),
+      h5('All data are represented at the ZIP code or modified ZIP code level', 
+         align = 'center'),
+      h5('Last updated: 19 May 2020'),
       br(),
       br()
       
@@ -97,6 +102,18 @@ server <- function(input, output) {
   })
   
   get_pretty_labels <- reactive({
+    if(grepl('assistance', input$demo_var)){
+      lab1 = 'Percent receiving\npublic assistance'
+    }else if(grepl('hispanic', input$demo_var)){
+      lab1 = 'Percent Hispanic/Latino'
+    }else if(grepl('black', input$demo_var)){
+      lab1 = 'Percent Black'
+    }else if(grepl('mgmt', input$demo_var)){
+      lab1 = 'Percent in\nmgmt, arts, sci'
+    }else{
+      lab1 = to_sentence_case(input$demo_var)
+    }
+    
     if(grepl('CASE', input$outcome_var)){
       lab2 = to_sentence_case(input$outcome_var)
       lab2 = paste(lab2, '\nper 100,000', sep = '')
@@ -105,8 +122,8 @@ server <- function(input, output) {
     }else{
       lab2 = to_sentence_case(input$outcome_var)
     }
-    labs = c(to_sentence_case(input$demo_var),
-             lab2)
+    
+    labs = c(lab1, lab2)
     labs
   })
   
