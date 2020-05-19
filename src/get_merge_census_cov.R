@@ -7,7 +7,8 @@ library(sf)
 # Set path and global variables
 #######################################
 
-setwd("~/Documents/explore_covid_nyc")
+setwd("~/Documents/covid_nyc_map")
+#NOTE: this needs to be pulled from https://github.com/nychealth/coronavirus-data
 nyc_data = "data/coronavirus-data/"
 geo_data = paste(nyc_data, "Geography-resources/", sep = '')
 SAVE_OUTS = FALSE

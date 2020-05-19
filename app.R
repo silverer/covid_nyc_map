@@ -6,7 +6,7 @@ library(ggplot2)
 library(stats)
 library(snakecase)
 
-setwd('~/Documents/explore_covid_nyc')
+setwd('~/Documents/covid_nyc_map')
 
 df <- read.csv('data/covid_data_w_census.csv', stringsAsFactors = FALSE)
 df$ZCTA <- as.character(df$ZCTA)
