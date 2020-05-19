@@ -1,0 +1,28 @@
+variable_call,variable_label,pretty_label
+DP05_0001E,total_population,Total pop.
+DP05_0003PE,percent_female,Female
+DP03_0009PE,percent_unemployed,Unemployment
+DP03_0062E,median_income,Med. income
+DP03_0119PE,poverty_rate,Poverty rate
+DP03_0099PE,percent_uninsured,Uninsured
+DP03_0098PE,percent_public_health_insurance,Public health ins.
+DP03_0097PE,percent_private_health_insurance,Private health ins.
+DP04_0046PE,home_ownership,Home ownership rate
+DP04_0078PE,percent_1_1.5_per_room,percent_1_1.5_per_room
+DP04_0079PE,more_1.5_per_room,more_1.5_per_room
+DP04_0047PE,renter_occupied,Renter occupied
+DP02_0009PE,single_mom,Single mom
+DP02_0007PE,single_dad,Single dad
+DP04_0089E,home_median_value,Med. property val
+DP02_0066PE,high_school_completion,High school ed.
+DP02_0067PE,college_graduates,Bachelors degree
+DP02_0152PE,percent_with_Internet,Internet access
+DP05_0037PE,percent_white,White
+DP05_0024PE,percent_65_and_over,
+DP05_0021PE,percent_18_and_over,
+DP05_0018E,median_age,Med. age
+DP05_0038PE,percent_black,Black
+DP05_0071PE,percent_hispanic_latino,Hispanic
+DP03_0072PE,percent_receiving_public_assistance,Public assistance
+DP03_0027PE,percent_in_mgmt_art_sci,"Mgmt, arts, sci"
+DP04_0003PE,percent_vacant_units,
