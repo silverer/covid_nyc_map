@@ -1,0 +1,13 @@
+name: covid_nyc_map
+title: covid_nyc_map
+username:
+account: silverknits
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2326680
+bundleId: 3168116
+url: https://silverknits.shinyapps.io/covid_nyc_map/
+when: 1589926207.89876
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: README.md|figures/.DS_Store|figures/cov_correlations.png|src/census_key.R|src/get_merge_census_cov.R|src/plot_census_cov.R
