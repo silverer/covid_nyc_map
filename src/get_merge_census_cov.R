@@ -1,17 +1,15 @@
 library(dplyr)
 library(tidycensus)
 library(ggplot2)
-library(sf)
 
 #######################################
 # Set path and global variables
 #######################################
 
 setwd("~/Documents/covid_nyc_map")
-#NOTE: this needs to be pulled from https://github.com/nychealth/coronavirus-data
-nyc_data = "data/coronavirus-data/"
-geo_data = paste(nyc_data, "Geography-resources/", sep = '')
-SAVE_OUTS = FALSE
+source('./src/data_paths.R')
+
+SAVE_OUTS = TRUE
 GET_ACS = FALSE
 
 acs_wrapper <- function(vars){
@@ -28,7 +26,8 @@ acs_wrapper <- function(vars){
 #######################################
 
 #Specifies desired ACS variables
-vars = read.csv('data/census_variables.csv', stringsAsFactors = FALSE)
+vars = read.csv(paste(new_data, 'census_variables.csv', sep = ''), 
+                stringsAsFactors = FALSE)
 vars = vars %>% 
   filter(is.na(pretty_label)==FALSE & pretty_label != '')
 
@@ -66,7 +65,8 @@ if(GET_ACS == TRUE){
     write.csv(acs_ny_only, 'data/acs_data_nyc.csv')
   }
 }else{
-  acs_vars = read.csv('data/acs_data_nyc.csv', stringsAsFactors = FALSE)
+  acs_vars = read.csv(paste(new_data, 'acs_data_nyc.csv', sep = ''), 
+                      stringsAsFactors = FALSE)
   acs_vars$ZCTA = as.character(acs_vars$ZCTA)
 }
 
@@ -82,7 +82,7 @@ merged = merged %>%
          Borough = BOROUGH_GROUP)
 
 if(SAVE_OUTS==TRUE){
-  write.csv(merged, 'data/covid_data_w_census.csv')
+  write.csv(merged, paste(new_data, 'covid_data_w_census.csv', sep = ''))
 }
 
 

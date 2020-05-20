@@ -1,3 +1,5 @@
 .DS_Store
 .RHistory
 data/coronavirus-data/
+rsconnect/
+figures/

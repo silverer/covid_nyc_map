@@ -12,10 +12,8 @@ library(ggcorrplot)
 #######################################
 
 setwd("~/Documents/covid_nyc_map/")
-nyc_data = "data/coronavirus-data/"
-geo_data = paste(nyc_data, "Geography-resources/", sep = '')
-new_data = 'data/'
-figs = './figures/'
+source('./src/data_paths.R')
+
 SAVE_FIGS = TRUE
 vars = read.csv(paste(new_data, 'census_variables.csv', sep = ''),
                     stringsAsFactors = F)
@@ -45,6 +43,8 @@ generate_choro_df <- function(temp_df, full_df){
   choro$prepare_map()
   choro_df = choro$choropleth.df
   choro_df['ZCTA'] = as.character(choro_df$ZCTA5CE10)
+  choro_df = choro_df %>% 
+    filter(ZCTA %in% full_df$ZCTA)
   choro_df = left_join(choro_df, full_df, by = 'ZCTA')
   return(choro_df)
 }
