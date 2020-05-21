@@ -1,0 +1,32 @@
+variable_call,variable_label,pretty_label
+DP05_0001E,total_population,Total pop.
+DP05_0003E,num_female,Female
+DP03_0009E,num_unemployed,Unemployment
+DP03_0062E,median_income,Med. income
+DP03_0119E,num_poverty,Poverty rate
+DP03_0099E,num_uninsured,Uninsured
+DP03_0098E,num_public_health_ins,Public health ins.
+DP03_0097E,num_private_health_ins,Private health ins.
+DP04_0046E,num_home_ownership,Home ownership rate
+DP04_0078E,num_1_1.5_room,percent_1_1.5_per_room
+DP04_0079E,num_more_1.5_per_room,more_1.5_per_room
+DP04_0047E,num_renter_occupied,Renter occupied
+DP02_0009E,num_single_mom,Single mom
+DP02_0007E,num_single_dad,Single dad
+DP04_0089E,home_median_value,Med. property val
+DP02_0066E,num_high_school_completion,High school ed.
+DP02_0067E,num_college_graduates,Bachelors degree
+DP02_0152E,num_with_Internet,Internet access
+DP05_0037E,num_white,White
+DP05_0024E,percent_65_and_over,
+DP05_0021PE,percent_18_and_over,
+DP05_0018E,median_age,Med. age
+DP05_0038E,num_black,Black
+DP05_0071E,num_hispanic_latino,Hispanic
+DP03_0072E,num_receiving_public_assistance,Public assistance
+DP03_0027E,num_in_mgmt_art_sci,"Mgmt, arts, sci"
+DP04_0142E,percent_spending_35_percent_rent,
+DP04_0134E,median_rent,Median rent
+DP05_0044E,percent_asian,Percent Asian
+DP02_0095E,percent_non_citizens,Percent non-citizens
+DP02_0071E,percent_with_disability,Percent with disability

@@ -1,0 +1,31 @@
+original_name,formatted_name
+PERCENT_POSITIVE,Percent positive\nCOVID tests
+COVID_CASE_RATE,"COVID cases\nper 100,000"
+COVID_DEATH_RATE,"COVID deaths\nper 100,000"
+total_population,Total population
+percent_female,Percent female
+percent_unemployed,Unemployment rate
+median_income,Median income
+poverty_rate,Poverty rate
+percent_uninsured,Percent uninsured
+percent_public_health_insurance,Percent public\nhealth ins.
+percent_private_health_insurance,Percent private\nhealth ins.
+home_ownership,
+renter_occupied,
+single_mom,
+single_dad,
+home_median_value,Median property value
+high_school_completion,High school\ncompletion rate
+college_graduates,College\ncompletion rate
+percent_with_Internet,Percent w Internet
+percent_white,Percent White
+median_age,
+percent_black,Percent Black
+percent_hispanic_latino,Percent Hispanic\n/Latino
+percent_receiving_public_assistance,Percent receiving\npublic assistance
+percent_in_mgmt_art_sci,"Percent in\nmgmt, arts, science"
+median_rent,Median rent
+percent_asian,Percent Asian
+percent_non_citizens,
+percent_with_disability,Percent w disability
+crowding,Crowding

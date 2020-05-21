@@ -8,6 +8,7 @@ DP03_0099PE,percent_uninsured,Uninsured
 DP03_0098PE,percent_public_health_insurance,Public health ins.
 DP03_0097PE,percent_private_health_insurance,Private health ins.
 DP04_0046PE,home_ownership,Home ownership rate
+DP04_0077PE,percent_own_room,percent_own_room
 DP04_0078PE,percent_1_1.5_per_room,percent_1_1.5_per_room
 DP04_0079PE,more_1.5_per_room,more_1.5_per_room
 DP04_0047PE,renter_occupied,Renter occupied
