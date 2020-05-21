@@ -109,6 +109,7 @@ ui <- fluidPage(
       h5('All data are represented at the ZIP code or modified ZIP code level', 
          align = 'center'),
       h5('Last updated: 20 May 2020', align = 'center'),
+      h5('The code for this app is available on Github: https://github.com/silverer/covid_nyc_map'),
       br(),
       br()
     )
