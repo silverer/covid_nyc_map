@@ -23,12 +23,16 @@ merged = read.csv(paste(new_data, 'covid_data_w_census.csv', sep= ''),
 merged$ZCTA = as.character(merged$ZCTA)
 
 nyc_fips = c('36005', '36047', '36061', '36081', '36085')
-plot_cols = c('median_income', 'percent_white', 'percent_black',
-              'percent_hispanic_latino', 'percent_uninsured',
-              'percent_receiving_public_assistance',
-              'high_school_completion', 'percent_in_mgmt_art_sci',
-              'poverty_rate', 'percent_private_health_insurance',
-              'percent_unemployed')
+
+# plot_cols = c('median_income', 'percent_white', 'percent_black',
+#               'percent_hispanic_latino', 'percent_uninsured',
+#               'percent_receiving_public_assistance',
+#               'high_school_completion', 'percent_in_mgmt_art_sci',
+#               'poverty_rate', 'percent_private_health_insurance',
+#               'percent_unemployed')
+
+plot_cols = vars %>% 
+  filter(is.na(pretty_label)==FALSE & pretty_label != '')
 
 new_vars = vars %>% 
   filter(variable_label %in% plot_cols)

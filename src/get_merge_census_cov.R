@@ -10,7 +10,7 @@ setwd("~/Documents/covid_nyc_map")
 source('./src/data_paths.R')
 
 SAVE_OUTS = TRUE
-GET_ACS = FALSE
+GET_ACS = TRUE
 
 acs_wrapper <- function(vars){
   acs_data = tidycensus::get_acs(geography = "zip code tabulation area", 

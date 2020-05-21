@@ -26,3 +26,8 @@ DP05_0071PE,percent_hispanic_latino,Hispanic
 DP03_0072PE,percent_receiving_public_assistance,Public assistance
 DP03_0027PE,percent_in_mgmt_art_sci,"Mgmt, arts, sci"
 DP04_0003PE,percent_vacant_units,
+DP04_0142PE,percent_spending_35_percent_rent,
+DP04_0134E,median_rent,Median rent
+DP05_0044PE,percent_asian,Percent Asian
+DP02_0095PE,percent_non_citizens,Percent non-citizens
+DP02_0071PE,percent_with_disability,Percent with disability

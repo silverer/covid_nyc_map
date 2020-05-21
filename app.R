@@ -64,14 +64,20 @@ ui <- fluidPage(
       h4(selectInput(inputId = 'demo_var',
                   label = "Census demographic variable:",
                   c("Median income" = 'median_income',
+                    'Median rent' = 'median_rent',
+                    'Percent non-citizens' = 'percent_non_citizens',
+                    'Percent with disability' = 'percent_with_disability',
                     'Percent White' = 'percent_white',
                     'Percent Black' = 'percent_black',
+                    'Percent Asian' = 'percent_asian',
                     'Percent Hispanic' = 'percent_hispanic_latino',
                     'Percent uninsured' = 'percent_uninsured',
                     'Percent receiving public assistance' = 'percent_receiving_public_assistance',
                     'High school completion rate' = 'high_school_completion',
                     'Percent working in managment, arts, sciences' = 'percent_in_mgmt_art_sci',
-                    'Poverty rate' = 'poverty_rate'),
+                    'Poverty rate' = 'poverty_rate',
+                    'Percent spending >=35% of income on rent' = 'percent_spending_35_percent_rent',
+                    'Percent with disability' = 'percent_with_disability'),
                   selected = 'Median income')),
       h4('Plot options: '),
       checkboxInput(inputId = 'show_by_borough',
@@ -135,6 +141,14 @@ server <- function(input, output) {
       lab1 = 'Percent Black'
     }else if(grepl('mgmt', input$demo_var)){
       lab1 = 'Percent in\nmgmt, arts, sci'
+    }else if(grepl('disability', input$demo_var)){
+      lab1 = 'Percent with\ndisability'
+    }else if(grepl('asian', input$demo_var)){
+      lab1 = 'Percent Asian'
+    }else if(grepl('spending', input$demo_var)){
+      lab1 = 'Percent spending >=35%\nof income on rent'
+    }else if(grepl('citizen', input$demo_var)){
+      lab1 = 'Percent non-citizens'
     }else{
       lab1 = to_sentence_case(input$demo_var)
     }
@@ -180,6 +194,8 @@ server <- function(input, output) {
   output$correlation_plot <- renderPlot({
     temp = get_corr_vars()
     plot_labels = get_pretty_labels()
+    temp = temp %>% 
+      filter(!is.na(x) & !is.na(y))
     if(input$show_by_borough==TRUE){
       if(input$show_reg_line==TRUE){
         p = ggplot(temp, aes(x, y))+
