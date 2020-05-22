@@ -14,22 +14,17 @@ library(ggcorrplot)
 setwd("~/Documents/covid_nyc_map/")
 source('./src/data_paths.R')
 
-SAVE_FIGS = TRUE
+SAVE_FIGS = FALSE
 vars = read.csv(paste(new_data, 'census_variables.csv', sep = ''),
                     stringsAsFactors = F)
 merged = read.csv(paste(new_data, 'covid_data_w_census.csv', sep= ''),
                   stringsAsFactors = F)
-
+merged = merged %>% 
+  select(-c(X, X.1))
+  
 merged$ZCTA = as.character(merged$ZCTA)
 
 nyc_fips = c('36005', '36047', '36061', '36081', '36085')
-
-# plot_cols = c('median_income', 'percent_white', 'percent_black',
-#               'percent_hispanic_latino', 'percent_uninsured',
-#               'percent_receiving_public_assistance',
-#               'high_school_completion', 'percent_in_mgmt_art_sci',
-#               'poverty_rate', 'percent_private_health_insurance',
-#               'percent_unemployed')
 
 plot_cols = vars %>% 
   filter(is.na(pretty_label)==FALSE & pretty_label != '')
@@ -58,7 +53,8 @@ build_choropleth <- function(choro_df, var_label, pretty_label,
                              min_color = 'lightgrey', max_color = 'darkblue'){
   p = ggplot() + 
     geom_polygon(data=choro_df %>% filter(!is.na(.data[[var_label]])), 
-                 aes(x=long, y=lat, group=group, fill = .data[[var_label]])) +
+                 aes(x=long, y=lat, group=group, fill = .data[[var_label]]),
+                 color = 'white', size = 0.2) +
     scale_fill_gradient(low = min_color, high = max_color, 
                         guide = 
                           guide_colorbar(
@@ -71,8 +67,11 @@ build_choropleth <- function(choro_df, var_label, pretty_label,
           axis.text.x = element_blank(),
           axis.text.y = element_blank(),
           axis.ticks = element_blank()) +
-    labs(title=sprintf('%s by zip code', pretty_label),
-         x ="", y = "")
+    labs(title=sprintf('%s', pretty_label),
+         x ="", y = "")+
+    theme(plot.title = element_text(size = 20, hjust = 0.5,
+                                    vjust = -2),
+          legend.title = element_text(size = 16))
   
   return(p)
 }
@@ -89,28 +88,110 @@ write.csv(choro_inputs,paste(new_data, 'choropleth_inputs.csv', sep = ''))
 temp_chor = read.csv(paste(new_data, 'choropleth_inputs.csv', sep = ''),
                         stringsAsFactors = FALSE)
 
-test_plot = build_choropleth(temp_chor, 'median_income', 'Median Income')
+test_plot = build_choropleth(choro_inputs, 'median_income', 'Median Income')
 print(test_plot)
-
+# figname = sprintf("%s_choropleth.png", plot_cols[2])
+# png(paste(figs, figname, sep = ''), width = 13, 
+#     height = 13, units = "in", res = 250)
 
 
 #Create correlation matrix
+pretty_columns = read.csv(paste(new_data, 'pretty_column_names.csv', sep = ''),
+                          stringsAsFactors = FALSE)
+keep_covid = pretty_columns %>% 
+  filter(!is.na(split_word))
+
+keep_covid$l2[keep_covid$l2 == ''] = ' '
+keep_covid = keep_covid %>% 
+  mutate(formatted_name = paste(l1, l2, sep = "\n"))
+  
 keep_covid = c('PERCENT_POSITIVE', 'COVID_CASE_RATE', 'COVID_DEATH_RATE')
-
-vars = vars %>% 
-  filter(variable_label %in% as.vector(colnames(merged)))
-
-keep_covid = append(keep_covid, as.vector(vars$variable_label))
+keep_acs = vars %>% filter(variable_label %in% colnames(merged))
+keep_covid = append(keep_covid, as.vector(keep_acs$variable_label))
 keep_covid = append(keep_covid, 'crowding')
 corr_df = merged %>% 
   select(all_of(keep_covid)) 
 
+merged.rcorr = rcorr(as.matrix(corr_df))
+merged.coeff = as.data.frame(merged.rcorr$r)
+merged.p = as.data.frame(merged.rcorr$P)
+
+keep_covid = c('PERCENT_POSITIVE', 'COVID_CASE_RATE', 'COVID_DEATH_RATE')
+merged.coeff = merged.coeff %>% select(all_of(keep_covid)) 
+merged.p = merged.p %>% 
+  select('PERCENT_POSITIVE_P' = 'PERCENT_POSITIVE',
+         'COVID_CASE_RATE_P' = 'COVID_CASE_RATE',
+         'COVID_DEATH_RATE_P' = 'COVID_DEATH_RATE') 
+
+all_cors = cbind(merged.coeff, merged.p)
+
+all_cors['variable'] = rownames(all_cors)
+rownames(all_cors) = 1:nrow(all_cors)
+
+sig_cors = all_cors %>% 
+  filter(COVID_CASE_RATE_P < 0.05 | COVID_DEATH_RATE_P < 0.05 |PERCENT_POSITIVE_P < 0.05) %>% 
+  filter(variable != 'PERCENT_POSITIVE' & variable != 'COVID_CASE_RATE' & variable != 'COVID_DEATH_RATE')
+#view significant cors by biggest r value for percent positive
+sig_cors %>% arrange(desc(abs(PERCENT_POSITIVE))) %>% select(PERCENT_POSITIVE, PERCENT_POSITIVE_P, variable)
+
+sig_cors %>% arrange(desc(abs(COVID_CASE_RATE))) %>% select(COVID_CASE_RATE, COVID_CASE_RATE_P, variable)
+
+sig_cors %>% arrange(desc(abs(COVID_DEATH_RATE))) %>% select(COVID_DEATH_RATE, COVID_DEATH_RATE_P, variable)
+write.csv(all_cors, paste(new_data, 'correlations.csv', sep = ''))
+
+for(c in colnames(corr_df)){
+  figname = sprintf("%s_choropleth.png", c)
+  png(paste(figs, figname, sep = ''), width = 13, 
+      height = 13, units = "in", res = 250)
+  p = build_choropleth(choro_inputs, c, c)
+  print(p)
+  dev.off()
+}
+library(gridExtra)
+png(paste(figs, 'side_by_side_pos_mgmt_art_sci.png', sep = ''), width = 20, 
+    height = 15, units = "in", res = 250)
+p1 = build_choropleth(choro_inputs, 'PERCENT_POSITIVE', '% of COVID\nTests Positive')
+#print(p1)
+p2 = build_choropleth(choro_inputs, 'percent_in_mgmt_art_sci', '% Working in Mgmt,\nArts, Science')
+grid.arrange(p1, p2, nrow = 1)
+dev.off()
+
+
 #save the merged data frame
 #write.csv(corr_df, 'merged_covid_census_data.csv')
 #Get correlation matrix
-merged.rcorr = rcorr(as.matrix(corr_df))
-merged.coeff = merged.rcorr$r
-merged.p = merged.rcorr$P
+
+get_correlations <- function(df){
+  merged.rcorr = rcorr(as.matrix(df))
+  merged.coeff = merged.rcorr$r
+  merged.p = merged.rcorr$P
+  if(merged.coeff[1,1]!=1.0){
+    r_val = merged.coeff[1,1]
+    p_val = merged.p[1,1]
+  }else{
+    r_val = merged.coeff[1,2]
+    p_val = merged.p[1,2]
+  }
+  return(c(r_val, p_val))
+}
+
+temp = merged %>% select(PERCENT_POSITIVE, percent_in_mgmt_art_sci)
+res = get_correlations(temp)
+
+p = ggplot(temp, aes(percent_in_mgmt_art_sci, PERCENT_POSITIVE))+
+  geom_point() +
+  labs(y = "percent pos", x = "percent in mgmt arts sci") +
+  theme(text = element_text(size = 20))
+p = p + geom_smooth(data = temp, method="lm", se=FALSE)
+annotation_x = (max(temp$percent_in_mgmt_art_sci) - min(temp$percent_in_mgmt_art_sci))/2
+annotation_y = (max(temp$PERCENT_POSITIVE) - min(temp$PERCENT_POSITIVE))/2
+p = p + geom_label(x = annotation_x, y = annotation_y,
+                   aes(label=sprintf("r = %s, p = %s", as.character(round(res[1], 2)), 
+                                     as.character(round(res[2], 3)))),
+                   size=4 , fontface="bold" )
+print(p)
+
+
 
 merged.coeff = as.data.frame(merged.coeff) %>% 
   select(c(PERCENT_POSITIVE))
@@ -143,6 +224,8 @@ if(SAVE_FIGS == T){
 }else{
   ggcorrplot(new_merged.coeff, type = 'lower')
 }
+
+
 
 # OLD 
 # 

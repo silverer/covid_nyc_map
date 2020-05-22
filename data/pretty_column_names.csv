@@ -1,31 +1,32 @@
-original_name,formatted_name
-PERCENT_POSITIVE,Percent positive\nCOVID tests
-COVID_CASE_RATE,"COVID cases\nper 100,000"
-COVID_DEATH_RATE,"COVID deaths\nper 100,000"
-total_population,Total population
-percent_female,Percent female
-percent_unemployed,Unemployment rate
-median_income,Median income
-poverty_rate,Poverty rate
-percent_uninsured,Percent uninsured
-percent_public_health_insurance,Percent public\nhealth ins.
-percent_private_health_insurance,Percent private\nhealth ins.
-home_ownership,
-renter_occupied,
-single_mom,
-single_dad,
-home_median_value,Median property value
-high_school_completion,High school\ncompletion rate
-college_graduates,College\ncompletion rate
-percent_with_Internet,Percent w Internet
-percent_white,Percent White
-median_age,
-percent_black,Percent Black
-percent_hispanic_latino,Percent Hispanic\n/Latino
-percent_receiving_public_assistance,Percent receiving\npublic assistance
-percent_in_mgmt_art_sci,"Percent in\nmgmt, arts, science"
-median_rent,Median rent
-percent_asian,Percent Asian
-percent_non_citizens,
-percent_with_disability,Percent w disability
-crowding,Crowding
+original_name,formatted_name,split_word,l1,l2
+PERCENT_POSITIVE,Percent positive COVID tests,TRUE,Percent positive,COVID tests
+COVID_CASE_RATE,"COVID cases per 100,000",TRUE,COVID cases,"per 100,000"
+COVID_DEATH_RATE,"COVID deaths per 100,000",TRUE,COVID deaths,"per 100,000"
+total_population,Total population,FALSE,Total population,
+percent_female,Percent female,FALSE,Percent female,
+percent_unemployed,Unemployment rate,FALSE,Unemployment rate,
+median_income,Median income,FALSE,Median income,
+poverty_rate,Poverty rate,FALSE,Poverty rate,
+percent_uninsured,Percent uninsured,FALSE,Percent uninsured,
+percent_public_health_insurance,Percent public health ins.,TRUE,Percent public,health ins.
+percent_private_health_insurance,Percent private health ins.,TRUE,Percent private,health ins.
+home_ownership,,,,
+renter_occupied,,,,
+single_mom,,,,
+single_dad,,,,
+home_median_value,Median property value,TRUE,Median property,value
+high_school_completion,High school completion rate,TRUE,High school,completion rate
+college_graduates,College completion rate,TRUE,College,completion rate
+percent_with_Internet,Percent w Internet,TRUE,Percent w,Internet
+percent_white,Percent White,FALSE,Percent White,
+median_age,,,,
+percent_black,Percent Black,FALSE,Percent Black,
+percent_hispanic_latino,Percent Hispanic/Latino,TRUE,Percent Hispanic/,Latino
+percent_receiving_public_assistance,Percent receiving public assistance,TRUE,Percent receiving,public assistance
+percent_in_mgmt_art_sci,"Percent in mgmt, arts, science",TRUE,"Percent in mgmt,","arts, science"
+median_rent,Median rent,FALSE,Median rent,
+percent_asian,Percent Asian,FALSE,Percent Asian,
+percent_non_citizens,,,,
+percent_with_disability,Percent w disability,TRUE,Percent w,disability
+crowding,Crowding,FALSE,Crowding,
+percent_spending_35_percent_rent,Percent spending >=35% of income on rent,TRUE,Percent spending >=35%,of income on rent

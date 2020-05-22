@@ -10,7 +10,7 @@ setwd("~/Documents/covid_nyc_map")
 source('./src/data_paths.R')
 
 SAVE_OUTS = TRUE
-GET_ACS = TRUE
+GET_ACS = FALSE
 
 acs_wrapper <- function(vars){
   acs_data = tidycensus::get_acs(geography = "zip code tabulation area", 
@@ -20,6 +20,7 @@ acs_wrapper <- function(vars){
   
   return(acs_data)
 }
+
 
 #######################################
 # Read in datasets
@@ -56,8 +57,9 @@ if(GET_ACS == TRUE){
     select(all_of(var_list)) %>% 
     rename('ZCTA' = GEOID) %>% 
     rename(all_of(new_names)) %>% 
-    mutate(crowding = percent_1_1.5_per_room + more_1.5_per_room) %>% 
-    select(-c(percent_1_1.5_per_room, more_1.5_per_room, NAME))
+    mutate(crowding = 100 - percent_own_room) %>% 
+    select(-c(percent_1_1.5_per_room, more_1.5_per_room, 
+              percent_own_room, NAME))
   acs_vars = as.data.frame(acs_vars)
   acs_ny_only = acs_vars %>% 
     filter(ZCTA %in% cov_dat$ZCTA)
