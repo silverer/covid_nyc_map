@@ -3,3 +3,5 @@
 data/coronavirus-data/
 rsconnect/
 figures/
+src/test_analysis.R
+dev_suite/

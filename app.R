@@ -69,6 +69,7 @@ get_correlations <- function(df){
 
 
 # Define UI for app that draws a histogram ----
+# Define UI for app that draws a histogram ----
 ui <- fluidPage(
   
   # App title ----
@@ -79,39 +80,39 @@ ui <- fluidPage(
     # Sidebar panel for inputs ----
     sidebarPanel(
       h4(selectInput(inputId = "outcome_var",
-                    label = "COVID-19 outcome:",
-                    c('Percent Positive COVID Tests' = 'PERCENT_POSITIVE',
-                      "Case rate per 100,000" = 'COVID_CASE_RATE',
-                      'Death rate per 100,000' = 'COVID_DEATH_RATE'),
-                  selected = 'Percent Positive COVID Tests')),
+                     label = "COVID-19 outcome:",
+                     c('Percent Positive COVID Tests' = 'PERCENT_POSITIVE',
+                       "Case rate per 100,000" = 'COVID_CASE_RATE',
+                       'Death rate per 100,000' = 'COVID_DEATH_RATE'),
+                     selected = 'Percent Positive COVID Tests')),
       h4(selectInput(inputId = 'demo_var',
-                  label = "Census demographic variable:",
-                  c("Median income" = 'median_income',
-                    'Median rent' = 'median_rent',
-                    'Percent with disability' = 'percent_with_disability',
-                    'Percent White' = 'percent_white',
-                    'Percent Black' = 'percent_black',
-                    'Percent Asian' = 'percent_asian',
-                    'Percent Hispanic/Latino' = 'percent_hispanic_latino',
-                    'Percent uninsured' = 'percent_uninsured',
-                    'Percent receiving public assistance' = 'percent_receiving_public_assistance',
-                    'High school completion rate' = 'high_school_completion',
-                    'College completion rate' = 'college_graduates',
-                    'Percent working in managment, arts, sciences' = 'percent_in_mgmt_art_sci',
-                    'Poverty rate' = 'poverty_rate',
-                    'Percent spending >=35% of income on rent' = 'percent_spending_35_percent_rent'),
-                  selected = 'Median income')),
+                     label = "Census demographic variable:",
+                     c("Median income" = 'median_income',
+                       'Median rent' = 'median_rent',
+                       'Percent with disability' = 'percent_with_disability',
+                       'Percent White' = 'percent_white',
+                       'Percent Black' = 'percent_black',
+                       'Percent Asian' = 'percent_asian',
+                       'Percent Hispanic/Latino' = 'percent_hispanic_latino',
+                       'Percent uninsured' = 'percent_uninsured',
+                       'Percent receiving public assistance' = 'percent_receiving_public_assistance',
+                       'High school completion rate' = 'high_school_completion',
+                       'College completion rate' = 'college_graduates',
+                       'Percent working in managment, arts, sciences' = 'percent_in_mgmt_art_sci',
+                       'Poverty rate' = 'poverty_rate',
+                       'Percent spending >=35% of income on rent' = 'percent_spending_35_percent_rent'),
+                     selected = 'Median income')),
       h4('Plot options: '),
       checkboxInput(inputId = 'show_by_borough',
                     label = h4('Show color coding for boroughs?'),
                     value = TRUE),
       checkboxInput(inputId = 'show_reg_line',
-                       label = h4('Show linear relationship between variables?'),
-                       value = TRUE),
+                    label = h4('Show linear relationship between variables?'),
+                    value = TRUE),
       br(),
-      h5('Demographic data are sourced from the US Census American Community Survey 2014-2018 (www.census.gov/programs-surveys/acs)',
+      h5(uiOutput("acs_ref"),
          align = 'center'),
-      h5('COVID-19 data are sourced from the NYC Health Dept (github.com/nychealth/coronavirus-data) and aggregated over all time',
+      h5(uiOutput("covid_github_ref"),
          align = 'center')
       
     ),
@@ -132,14 +133,14 @@ ui <- fluidPage(
       br(),
       hr(),
       h4(textOutput(outputId = 'correlation_plot_head')),
-      h5(textOutput(outputId = 'correlation_plot_subhead')),
+      h5(uiOutput("stats_ref")),
       plotOutput(outputId = "correlation_plot"),
       br(),
       h5('All data are represented at the ZIP code or modified ZIP code level', 
          align = 'center'),
       h5('Last updated: 22 May 2020', 
          align = 'center'),
-      h5('The code for this app is available on Github: https://github.com/silverer/covid_nyc_map',
+      h5(uiOutput('app_github_ref'),
          align = 'center'),
       br(),
       br()
@@ -191,7 +192,9 @@ server <- function(input, output) {
                   labs[2], labs[1]))
   })
   
-  output$correlation_plot_subhead <- renderText({
+  stats_url = a("What does this mean?",
+                href = "https://statistics.laerd.com/statistical-guides/pearson-correlation-coefficient-statistical-guide.php")
+  output$stats_ref <- renderUI({
     temp = get_choro_df()
     temp = temp %>% select(-c(ZCTA))
     corr_vals = get_correlations(temp)
@@ -200,10 +203,29 @@ server <- function(input, output) {
     }else{
       pval = sprintf("= %s", round(corr_vals[2], 3))
     }
-    paste(sprintf("Pearson's r = %s, p-value %s",
-                  as.character(round(corr_vals[1], 2)),
-                  pval))
+    new_str = sprintf("Pearson's r = %s, p-value %s. ",
+                      as.character(round(corr_vals[1], 2)),
+                      pval)
+    tagList(new_str, stats_url)
   })
+  
+  github_url <- a("on Github", href="https://github.com/silverer/covid_nyc_map/")
+  output$app_github_ref <- renderUI({
+    tagList("The code for this app is available ", github_url)
+  })
+  
+  acs_url <- a("American Community Survey 2014-2018",
+               href="https://www.census.gov/programs-surveys/acs/")
+  output$acs_ref <- renderUI({
+    tagList("Demographic data are sourced from the US Census ", acs_url)
+  })
+  covid_url = a("NYC Health Dept",
+                href = "https://www.github.com/nychealth/coronavirus-data")
+  output$covid_github_ref <- renderUI({
+    tagList("COVID-19 data are sourced from the ", covid_url, " and aggregated over all time")
+  })
+  
+  
   
   output$correlation_plot <- renderPlot({
     temp = get_corr_vars()
