@@ -67,9 +67,7 @@ get_correlations <- function(df){
   return(c(r_val, p_val))
 }
 
-
-# Define UI for app that draws a histogram ----
-# Define UI for app that draws a histogram ----
+# Define UI for app ----
 ui <- fluidPage(
   
   # App title ----
@@ -119,25 +117,44 @@ ui <- fluidPage(
     
     # Main panel for displaying outputs ----
     mainPanel(
-      
-      fluidRow(
-        column(6,
-               h4(textOutput(outputId = "cov_pretty")),
-               plotOutput(outputId = "cov_plot")
-        ),
-        column(6,
-               h4(textOutput(outputId = "demo_pretty")),
-               plotOutput(outputId = "census_plot")
-        )
+      tabsetPanel(type = "tabs",
+                  tabPanel("Plots", 
+                           fluidRow(
+                             column(6,
+                                    h4(textOutput(outputId = "cov_pretty")),
+                                    plotOutput(outputId = "cov_plot")
+                             ),
+                             column(6,
+                                    h4(textOutput(outputId = "demo_pretty")),
+                                    plotOutput(outputId = "census_plot")
+                             ),
+                           ),
+                           hr(),
+                           h4(textOutput(outputId = 'correlation_plot_head')),
+                           h5(uiOutput("stats_ref")),
+                           plotOutput(outputId = "correlation_plot"),
+                           br(),
+                           h5('All data are represented at the ZIP code or modified ZIP code level', 
+                              align = 'center')
+                  ),
+                  tabPanel("About", 
+                           br(),
+                           h3("About the Project"),
+                           br(),
+                           
+                           h5(uiOutput('context_text')),
+                           tags$style("#context_text{font-size: 20px}"),
+                           br(),
+                           hr(),
+                           h3("About the Developer"),
+                           br(),
+                           h5(uiOutput('about_me')),
+                           tags$style("#about_me{font-size: 20px}"),
+                           br()
+                  )
       ),
       br(),
-      hr(),
-      h4(textOutput(outputId = 'correlation_plot_head')),
-      h5(uiOutput("stats_ref")),
-      plotOutput(outputId = "correlation_plot"),
-      br(),
-      h5('All data are represented at the ZIP code or modified ZIP code level', 
-         align = 'center'),
+      
       h5('Last updated: 24 May 2020', 
          align = 'center'),
       h5(uiOutput('app_github_ref'),
@@ -225,8 +242,6 @@ server <- function(input, output) {
     tagList("COVID-19 data are sourced from the ", covid_url, " and aggregated over all time")
   })
   
-  
-  
   output$correlation_plot <- renderPlot({
     temp = get_corr_vars()
     plot_labels = get_pretty_labels()
@@ -275,6 +290,43 @@ server <- function(input, output) {
     p = build_choropleth(choro_inputs, input$outcome_var,
                          labs[2])
     p
+  })
+  
+  nyt_url <- a("New York Times",
+               href="https://www.nytimes.com/2020/05/18/nyregion/coronavirus-deaths-nyc.html")
+  nejm_url <- a("New England Journal of Medicine",
+                href = "https://www.nejm.org/doi/full/10.1056/NEJMp2012910")
+  harv_paper_url <- a("Dr. Jarvis T. Chen and Dr. Nancy Krieger (2020)",
+                      href = "https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1266/2020/04/HCPDS_Volume-19_No_1_20_covid19_RevealingUnequalBurden_HCPDSWorkingPaper_04212020-1.pdf")
+  
+  hsph_url <- a("Harvard School of Public Health",
+                href = "https://www.hsph.harvard.edu/thegeocodingproject/covid-19-resources/")
+  
+  output$context_text <- renderUI({
+    intro = paste('The purpose of this project is to help visualize disparities in COVID-19 outcomes', 
+                  ' by demographic and socioeconomic characteristics of neighborhoods in New York City.',
+                  sep = ' ')
+    temp = " These disparities have been reported by the "
+    all_tags = list(intro, tags$br(), tags$br(), 
+                    temp, nyt_url, 
+                    " and a working paper (in other words, not yet reviewed by other scientists) developed by ", harv_paper_url, 
+                    " from the ", hsph_url)
+    tagList(all_tags)
+  })
+  hire_url <- a("Columbia University Medical Center.",
+                href = "https://www.genmed.columbia.edu/research/research-centers-and-programs/columbia-outcomes-research-and-decision-analysis-corda-1")
+  
+  res_gate_url <- a("ResearchGate",
+                    href = "https://www.researchgate.net/profile/Elisabeth_Silver2")
+  output$about_me <- renderUI({
+    intro = paste("Elisabeth Silver developed this application. She graduated from the University of Michigan in 2018 with a Bachelor's of Science,",
+                  " and has since been working as a Research Analyst at ",
+                  sep = '')
+    rg = "To read some of the developer's peer-reviewed research, please visit her profile on "
+    contact = "For inquiries, please contact Elisabeth via email: silver.elisabeth@gmail.com"
+    all_tags = list(intro, hire_url, tags$br(),
+                    rg, res_gate_url, tags$br(), tags$br(),
+                    contact, tags$br())
   })
   
 }
