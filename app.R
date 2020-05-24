@@ -138,7 +138,7 @@ ui <- fluidPage(
       br(),
       h5('All data are represented at the ZIP code or modified ZIP code level', 
          align = 'center'),
-      h5('Last updated: 22 May 2020', 
+      h5('Last updated: 24 May 2020', 
          align = 'center'),
       h5(uiOutput('app_github_ref'),
          align = 'center'),

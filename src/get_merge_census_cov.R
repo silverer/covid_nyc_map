@@ -1,6 +1,8 @@
 library(dplyr)
 library(tidycensus)
 library(ggplot2)
+library(choroplethrZip)
+library(choroplethr)
 
 #######################################
 # Set path and global variables
@@ -70,6 +72,8 @@ if(GET_ACS == TRUE){
   acs_vars = read.csv(paste(new_data, 'acs_data_nyc.csv', sep = ''), 
                       stringsAsFactors = FALSE)
   acs_vars$ZCTA = as.character(acs_vars$ZCTA)
+  acs_vars = acs_vars %>% 
+    select(-c(X))
 }
 
 #######################################
@@ -87,6 +91,24 @@ if(SAVE_OUTS==TRUE){
   write.csv(merged, paste(new_data, 'covid_data_w_census.csv', sep = ''))
 }
 
+#######################################
+# Create choropleth inputs
+#######################################
+generate_choro_df <- function(temp_df, full_df){
+  choro = ZipChoropleth$new(temp_df)
+  choro$set_zoom_zip(state_zoom = 'new york',county_zoom=nyc_fips, msa_zoom=NULL, zip_zoom=NULL)
+  choro$prepare_map()
+  choro_df = choro$choropleth.df
+  choro_df['ZCTA'] = as.character(choro_df$ZCTA5CE10)
+  choro_df = choro_df %>% 
+    filter(ZCTA %in% full_df$ZCTA)
+  choro_df = left_join(choro_df, full_df, by = 'ZCTA')
+  return(choro_df)
+}
 
+temp_acs = merged %>% 
+  select(region = ZCTA,
+         value = median_income)
 
-
+choro_inputs = generate_choro_df(temp_acs, merged)
+write.csv(choro_inputs,paste(new_data, 'choropleth_inputs.csv', sep = ''))
