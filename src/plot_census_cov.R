@@ -1,8 +1,5 @@
-library(choroplethrZip)
-library(choroplethr)
 library(dplyr)
 library(ggplot2)
-library(sf)
 library(stats)
 library(Hmisc)
 library(ggcorrplot)

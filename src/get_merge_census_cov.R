@@ -94,6 +94,7 @@ if(SAVE_OUTS==TRUE){
 #######################################
 # Create choropleth inputs
 #######################################
+nyc_fips = c('36005', '36047', '36061', '36081', '36085')
 generate_choro_df <- function(temp_df, full_df){
   choro = ZipChoropleth$new(temp_df)
   choro$set_zoom_zip(state_zoom = 'new york',county_zoom=nyc_fips, msa_zoom=NULL, zip_zoom=NULL)
