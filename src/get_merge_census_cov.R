@@ -112,4 +112,5 @@ temp_acs = merged %>%
          value = median_income)
 
 choro_inputs = generate_choro_df(temp_acs, merged)
-write.csv(choro_inputs,paste(new_data, 'choropleth_inputs.csv', sep = ''))
+
+write.csv(choro_inputs,paste(new_data, choro_fname, sep = ''))

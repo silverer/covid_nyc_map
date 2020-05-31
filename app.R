@@ -8,7 +8,7 @@ library(stringr)
 
 source('./src/data_paths.R')
 
-choro_inputs = read.csv(paste(new_data, 'choropleth_inputs.csv', sep = ''),
+choro_inputs = read.csv(paste(new_data, choro_fname, sep = ''),
                         stringsAsFactors = FALSE)
 choro_inputs$ZCTA = as.character(choro_inputs$ZCTA)
 df = choro_inputs %>% 
@@ -202,7 +202,7 @@ ui <- fluidPage(
       ),
       br(),
       
-      h5('Last updated: 28 May 2020', 
+      h5('Last updated: 29 May 2020', 
          align = 'center'),
       h5(uiOutput('app_github_ref'),
          align = 'center'),

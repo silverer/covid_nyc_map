@@ -1,6 +1,6 @@
 .DS_Store
 .RHistory
-data/coronavirus-data/
+coronavirus-data/
 rsconnect/
 figures/
 src/test_analysis.R

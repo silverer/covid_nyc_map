@@ -12,7 +12,5 @@ Also in `src/get_merge_census_cov.R`, you will merge the Census data with COVID-
 ### 4. Examine plots and visualizations
 The file `src/plot_census_cov.R` allows for quick visualizations of Census and COVID-19 data.
 
-### Acceptable uses of the application (`app.R`) file
-While I provide the code necessary to recreate the R Shiny application I developed, I ask that you do not republish this application under your own name or your organization's name. The code provided here to run the application is intended for educational purposes only, with the purpose of promoting openness and transparency in science.
 
 
