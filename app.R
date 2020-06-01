@@ -6,7 +6,7 @@ library(plotly)
 library(Hmisc)
 library(stringr)
 
-source('./src/data_paths.R')
+source('./data_paths.R')
 
 choro_inputs = read.csv(paste(new_data, choro_fname, sep = ''),
                         stringsAsFactors = FALSE)
@@ -134,7 +134,7 @@ ui <- fluidPage(
                      c("Median income" = 'median_income',
                        'Median rent' = 'median_rent',
                        'Percent with disability' = 'percent_with_disability',
-                       'Percent White' = 'percent_white',
+                       'Percent white' = 'percent_white',
                        'Percent Black' = 'percent_black',
                        'Percent Asian' = 'percent_asian',
                        'Percent Hispanic/Latino' = 'percent_hispanic_latino',
@@ -202,7 +202,7 @@ ui <- fluidPage(
       ),
       br(),
       
-      h5('Last updated: 29 May 2020', 
+      h5('Last updated: 01 June 2020', 
          align = 'center'),
       h5(uiOutput('app_github_ref'),
          align = 'center'),

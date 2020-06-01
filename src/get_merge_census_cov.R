@@ -9,7 +9,7 @@ library(choroplethr)
 #######################################
 
 setwd("~/Documents/covid_nyc_map")
-source('./src/data_paths.R')
+source('./data_paths.R')
 
 SAVE_OUTS = TRUE
 GET_ACS = FALSE

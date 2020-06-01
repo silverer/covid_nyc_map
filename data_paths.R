@@ -8,5 +8,5 @@ figs <- './figures/'
 nyc_data <- "./coronavirus-data/"
 geo_data <- paste(nyc_data, "Geography-resources/", sep = '')
 
-choro_fname <- paste('choropleth_inputs_',  "2020-05-30", sep = '')
+choro_fname <- paste('choropleth_inputs_',  "2020-06-01", sep = '')
 choro_fname <- paste(choro_fname, '.csv', sep = '')
