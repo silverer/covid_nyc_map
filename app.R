@@ -119,6 +119,7 @@ ui <- fluidPage(
   # App title ----
   titlePanel("COVID-19 in NYC: Comparisons with Census Demographic Data"),
   br(),
+  br(),
   # Sidebar layout with input and output definitions ----
   sidebarLayout(
     # Sidebar panel for inputs ----
@@ -163,8 +164,26 @@ ui <- fluidPage(
     
     # Main panel for displaying outputs ----
     mainPanel(
+      
       tabsetPanel(type = "tabs",
                   tabPanel("Plots",
+                           br(),
+                           tags$style(type="text/css", "
+                           #loadmessage {
+                             position: fixed;
+                             top: 200px;
+                             left: 500px;
+                             width: 50%;
+                             padding: 5px 0px 5px 0px;
+                             text-align: left;
+                             font-weight: bold;
+                             font-size: 200%;
+                             color: #000000;
+                             z-index: 105;
+                           }
+                          "),
+                           conditionalPanel(condition="$('html').hasClass('shiny-busy')",
+                                            tags$div("Loading...",id="loadmessage")),
                            fluidRow(
                              column(6,
                                     h4(textOutput(outputId = "cov_pretty")),
@@ -201,7 +220,6 @@ ui <- fluidPage(
                   )
       ),
       br(),
-      
       h5('Last updated: 02 June 2020', 
          align = 'center'),
       h5(uiOutput('app_github_ref'),
