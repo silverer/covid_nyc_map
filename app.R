@@ -220,7 +220,7 @@ ui <- fluidPage(
                   )
       ),
       br(),
-      h5('Last updated: 02 June 2020', 
+      h5('Last updated: 03 June 2020', 
          align = 'center'),
       h5(uiOutput('app_github_ref'),
          align = 'center'),
