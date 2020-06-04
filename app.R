@@ -160,7 +160,7 @@ build_time_plot <- function(df, var_label, tooltip_var){
   temp = ggplot(data = df, aes(x = Date, y = .data[[var_label]],
                                label = .data[[tooltip_var]]))+
     geom_bar(stat = 'identity', fill = 'turquoise', color = 'white')+
-    labs(title= paste(var_label, 'over time'),
+    labs(title= paste(var_label, 'per day'),
          x ="Date", y = var_label)+
     theme(panel.background = element_blank(),
           axis.line = element_line(colour = "black"),
@@ -320,7 +320,7 @@ ui <- fluidPage(
                   )
       ),
       br(),
-      h5('Last updated: 03 June 2020', 
+      h5('Last updated: 04 June 2020', 
          align = 'center'),
       h5(uiOutput('app_github_ref'),
          align = 'center'),
