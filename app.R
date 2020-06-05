@@ -46,28 +46,34 @@ pretty_choro_inputs = choro_inputs %>%
 tests = read.csv(paste(nyc_data, 'tests.csv', sep = ''),
                  stringsAsFactors = F)
 
-tests = tests %>% 
-  mutate(DATE = as.Date(DATE, format='%m/%d/%Y'),
-         day = strftime(DATE,'%A')) 
-
-new_names = c("Date", "Total tests", "Positive tests",
-              "Percent positive tests", "Percent Positive 3 days ago",
-              "Day")
-pretty_test_names = colnames(tests)
-names(pretty_test_names) = new_names
 pretty_tests = tests %>% 
-  mutate(PERCENT_POSITIVE = PERCENT_POSITIVE * 100,
-         PERCENT_POSITIVE_3DAYS_AGG = PERCENT_POSITIVE_3DAYS_AGG * 100) %>% 
-  rename(all_of(pretty_test_names))
-tests_melted <- melt(data.table(pretty_tests %>% 
-                                  mutate(`Total tests` = as.double(`Total tests`),
-                                         `Positive tests` = as.double(`Positive tests`),
-                                         `Percent positive tests` = as.character(`Percent positive tests`),
+  mutate(Date = as.Date(DATE, format='%m/%d/%Y'),
+         `Percent positive tests` = as.integer(PERCENT_POSITIVE*100),
+         `Total tests` = as.double(TOTAL_TESTS),
+         `Positive tests` = as.double(POSITIVE_TESTS)) %>% 
+  select(-c(PERCENT_POSITIVE_3DAYS_AGG, POSITIVE_TESTS,
+            TOTAL_TESTS, PERCENT_POSITIVE, DATE))
+
+deaths <- read.csv(paste(nyc_data, 'deaths/probable-confirmed-dod.csv', sep = ''),
+                   stringsAsFactors = F)
+deaths <- deaths %>% 
+  mutate(Date = as.Date(DATE_OF_DEATH, format='%m/%d/%Y'),
+         `Total deaths` = as.double(CONFIRMED_COUNT + PROBABLE_COUNT),
+         `Probable deaths` = as.double(PROBABLE_COUNT),
+         `Confirmed deaths` = as.double(CONFIRMED_COUNT)) %>% 
+  select(-c(DATE_OF_DEATH, CONFIRMED_COUNT, PROBABLE_COUNT))
+
+daily <- dplyr::left_join(pretty_tests, deaths, by = "Date")
+
+tests_melted <- melt(data.table(daily %>% 
+                                  mutate(`Percent positive tests` = as.character(`Percent positive tests`),
                                          `Percent positive tests` = paste(`Percent positive tests`, 
                                                                           '%', sep = '')) %>% 
                                   select(Date, `Total tests`, `Positive tests`,
-                                         `Percent positive tests`)), 
-                     id.vars = c('Date', 'Percent positive tests'))
+                                         `Percent positive tests`, `Total deaths`,
+                                         `Confirmed deaths`, `Probable deaths`)), 
+                     id.vars = c('Date', 'Percent positive tests', 'Total deaths'))
+
 
 
 #################################
@@ -172,13 +178,29 @@ build_time_plot <- function(df, var_label, tooltip_var){
   return(temp)
 }
 
-build_combined_time_plot <- function(melted_df){
-  temp = ggplot(data = as.data.frame(melted_df), aes(x = Date, y = value, 
+build_combined_time_plot <- function(melted_df, plot_type = 'tests'){
+  if(plot_type == 'tests'){
+    vars = c('Total tests', 'Positive tests')
+    temp_df = melted_df %>% 
+      filter(variable %in% vars)
+    temp = ggplot(data = as.data.frame(temp_df), aes(x = Date, y = value, 
                                                      label = `Percent positive tests`, fill = variable,
-                                                     text = paste(variable, value, sep = ': ')))+
+                                                     text = paste(variable, value, sep = ': ')))
+    title_text='COVID Testing Over Time'
+  }else{
+    vars = c('Confirmed deaths', 'Probable deaths')
+    temp_df = melted_df %>% 
+      filter(variable %in% vars)
+    temp_df[is.na(temp_df)] = 0
+    temp = ggplot(data = as.data.frame(temp_df), aes(x = Date, y = value, 
+                                                     label = `Total deaths`, fill = variable,
+                                                     text = paste(variable, value, sep = ': ')))
+    title_text = 'COVID Deaths Over Time'
+  }
+  temp = temp +
     geom_bar(stat = 'identity', position = 'stack')+
-    scale_fill_discrete(labels = c("Total tests", "Positive tests"))+
-    labs(title='COVID Testing Over Time',
+    scale_fill_discrete(labels = vars)+
+    labs(title=title_text,
          x ="Date", y = "Count")+
     theme(panel.background = element_blank(),
           axis.line = element_line(colour = "white"),
@@ -284,12 +306,14 @@ ui <- fluidPage(
                               align = 'center')
                   ),
                   tabPanel("Temporal Plots",
-                           h4('These plots show COVID-19 testing data for New York City over time.',
+                           h4('These plots show COVID-19 testing and mortality data for New York City over time.',
                               align = 'center'),
                            h4('Hover your mouse over the plot to see more detailed data.',
                               align = 'center'),
                            br(),
-                           plotlyOutput(outputId = "big_time_plot"),
+                           plotlyOutput(outputId = "big_time_test_plot"),
+                           br(),
+                           plotlyOutput(outputId = "big_time_death_plot"),
                            br(),
                            hr(),
                            br(),
@@ -320,7 +344,7 @@ ui <- fluidPage(
                   )
       ),
       br(),
-      h5('Last updated: 04 June 2020', 
+      h5('Last updated: 05 June 2020', 
          align = 'center'),
       h5(uiOutput('app_github_ref'),
          align = 'center'),
@@ -441,11 +465,15 @@ server <- function(input, output) {
     ggplotly(p)
   })
   
-  output$big_time_plot <- renderPlotly({
+  output$big_time_test_plot <- renderPlotly({
     p = build_combined_time_plot(tests_melted)
     ggplotly(p, tooltip = c("text", "Date", "label"))
   })
   
+  output$big_time_death_plot <- renderPlotly({
+    p = build_combined_time_plot(tests_melted, plot_type = 'deaths')
+    ggplotly(p, tooltip = c("text", "Date", "label"))
+  })
   
   nyt_url <- a("New York Times",
                href="https://www.nytimes.com/2020/05/18/nyregion/coronavirus-deaths-nyc.html")
