@@ -1,0 +1,267 @@
+commit_date,commit_date_time,commit_id,commit_message,commit_files,keep,filetype
+2020-3-26,2020-3-26 15:26,db6cdafab059996629d6a9e25369f4f715917b1f,Add files via upload,case-hosp-death.csv,False,
+2020-3-26,2020-3-26 15:33,5aab389019d627109ee318181a39656b3cb619ca,Add files via upload,boro-rates.csv;case-hosp-death.csv,False,
+2020-3-26,2020-3-26 15:41,bd5f0dc6840d4ef4592bd4243292802f2a5f1fb2,Update boro-rates.csv,boro-rates.csv;case-hosp-death.csv,False,
+2020-3-26,2020-3-26 16:13,b4c8886b59e3a4a5dde80bcc3d48a8de740a5ebc,Add files via upload,boro-rates.csv;case-hosp-death.csv;summary.csv,False,
+2020-3-26,2020-3-26 16:57,0b2ccbc6b1e4fddb118730d4288b7a390843f0dc,Add files via upload,boro-rates.csv;by-age.csv;case-hosp-death.csv;summary.csv,False,
+2020-3-26,2020-3-26 21:41,f65034548f8692b3bcc520baad5e70e9a0bac66b,"Create by-sex.xlsx
+",boro-rates.csv;by-age.csv;by-sex.xlsx;case-hosp-death.csv;summary.csv,False,
+2020-3-26,2020-3-26 21:45,3d1a8515a663c35cedec2e68a093a322b3da10b7,"Update by-sex csv
+",boro-rates.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv,False,
+2020-3-26,2020-3-26 22:16,0579b5b0aa26749199d7cd13b47e89d442b1fcaa,"Updated summary table
+",.DS_Store;boro-rates.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv,False,
+2020-3-26,2020-3-26 22:19,2d90af0522c65ee77d6287a1f0469264648e3681,"Update summary.csv
+",.DS_Store;boro-rates.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv,False,
+2020-3-26,2020-3-26 22:34,20c11ca22c7d83a46f7ea2e440240a69b9ba7057,"Update summary.csv
+",.DS_Store;boro-rates.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv,False,
+2020-3-26,2020-3-26 23:10,6e261a6eed7479296c08a6ea5cea9b2a5aecd630,"Update hosp est
+",.DS_Store;boro-rates.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv,,
+2020-3-27,2020-3-27 12:02,6c7da08701bb64dcc705586ea9263342c320d7eb,"Update summary.csv
+",.DS_Store;boro-rates.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv,False,
+2020-3-27,2020-3-27 12:43,603c50302416f6d37232884eb8e2a47324e529a1,Update summary.csv,.DS_Store;boro-rates.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv,False,
+2020-3-27,2020-3-27 13:01,d8df3180ba25806a9ef69156e660dc50e1cf8550,"Update summary.csv
+",.DS_Store;boro-rates.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv,False,
+2020-3-27,2020-3-27 13:12,edba00fca47a8f6e00fdbd6b6c171c99eb86afe1,Create README.md,.DS_Store;README.md;boro-rates.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv,False,
+2020-3-27,2020-3-27 14:03,70ca08274f059df8ecf84756d1586faba149b0da,"Update with 3.26 data
+",.DS_Store;README.md;boro-rates.csv;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv,False,
+2020-3-27,2020-3-27 14:55,22b081447a4893c96b94842e589f743220041b69,"Update summary.csv
+",.DS_Store;README.md;boro-rates.csv;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv,False,
+2020-3-27,2020-3-27 15:07,56304a3642547b22fd7e4e8e88ac964a3d86b391,"Delete boro-rates.csv
+",.DS_Store;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv,False,
+2020-3-27,2020-3-27 18:24,7521ac114f0f23186ca585afc3a534b75022fa48,"Update README.md
+",.DS_Store;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv,False,
+2020-3-27,2020-3-27 18:37,882febe928e196dbde5183652a2d6b2dff8f8852,"Updated boro
+
+Boro.csv now includes cumulative data from start of outbreak.
+",.DS_Store;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv,False,
+2020-3-27,2020-3-27 22:03,a3dded406c0b378f37efb1a9f31be930438a0a0e,"Update summary.csv
+
+Language change re: hospitalizations
+",.DS_Store;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv,False,
+2020-3-27,2020-3-27 22:37,6c3565c007486fc76fe26ae66ecc7a741435292d,"Update with 3/27 data
+",.DS_Store;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv,False,
+2020-3-27,2020-3-27 22:43,3d7bdf51e2df500659c21ef26fd0935b0245e460,"Updated summary.csv
+
+Updated reference to estimated hospitalizations
+",.DS_Store;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv,,
+2020-3-31,2020-3-31 13:25,8460dd7bfdb7b74cf330dc4f260b0e7f6a5e2bb0,"Update with 3/30 data
+",.DS_Store;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv,False,
+2020-3-31,2020-3-31 21:21,6f51a1fcca8ca44263aa7fe68de7172f9f8d9464,"Updated with 3/31 data
+",.DS_Store;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv,False,
+2020-3-31,2020-3-31 23:55,6968ca6f4a23c04f9a51ec2e3b161c41cd437bdb,"Added testing data
+
+Added testing data and updated Readme to include testing data and clarify time period through which most recent data may be incomplete.
+",.DS_Store;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;testing.csv,,
+2020-4-1,2020-4-1 16:35,097cbd70aa00eb635b17b177bc4546b2fce21895,"Added tests-by-zcta.csv
+
+Added cumulative tests by ZCTA data, and updated Readme with notes.
+",.DS_Store;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;testing.csv;tests-by-zcta.csv,False,zcta
+2020-4-1,2020-4-1 18:58,0fbbd5cf287750b09347c36e826fed2e234f0521,"Update README.md
+
+Clarified ZIP of residence for tests by ZIP data.
+",.DS_Store;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;testing.csv;tests-by-zcta.csv,False,zcta
+2020-4-1,2020-4-1 21:31,dd2010c7a0757e0094b72edc7eac6d552aa00207,"Update with 4/1 data
+
+Boro.csv file modified to include case counts as well as rates.
+",.DS_Store;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;testing.csv;tests-by-zcta.csv,,zcta
+2020-4-2,2020-4-2 22:09,8562fab90b05605ef6293d60a9f2251937e5f5d7,"Added data for 4/2 update
+",.DS_Store;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;testing.csv;tests-by-zcta.csv,,zcta
+2020-4-3,2020-4-3 12:09,10efdd3db1aedbd6a53e32afe1573533ce3beb9f,Delete .DS_Store,README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;testing.csv;tests-by-zcta.csv,False,zcta
+2020-4-3,2020-4-3 22:15,24fab60efbf4c22ca3e7dcc1c97427e34ddaca54,"Updated with 4/3 data
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;testing.csv;tests-by-zcta.csv,False,zcta
+2020-4-3,2020-4-3 22:56,0074809280d3f9ae0bd09ca62629fb21243ffc72,"Update tests-by-zcta
+
+4/3 update
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;testing.csv;tests-by-zcta.csv,False,zcta
+2020-4-3,2020-4-3 23:45,a65700c27ec81be71833f675e8e0fed4c37000f9,"Delete testing.csv
+
+Testing data will be on NYC Open Data going forward.
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-4-4,2020-4-4 22:32,0ae531d56696b7dfa01d1d1ad6286d7ae03350c7,"Updated with 4/4 data
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-4-5,2020-4-5 21:30,98a7fd1c5eccdae11d604dd98b2c4a2eafef059b,"Updated with 4/5 data
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-4-6,2020-4-6 22:05,8cb25d611800b21a703770669606a72daa54e385,"Added 4/6 data
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-4-7,2020-4-7 21:52,70904c376468567e3a2b922cc3ad1b8b854ed682,"Updated with 4/7 data
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,False,zcta
+2020-4-7,2020-4-7 22:35,55495966af131723fdbd1a4357c1f84adea03982,"Updated with 4/7 data
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-4-8,2020-4-8 22:03,e19db289166f73282d39dfcef0d47a324d654c07,"Updated all files with 4/8 data
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-4-9,2020-4-9 21:31,e1f1d9a63fac772e26a45220d3c8199a75938656,"Updated data for 4/9
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-4-10,2020-4-10 21:41,3fdd59a195bff5c4473a2086093ed656702d6569,"Update with data from 4/10
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-4-11,2020-4-11 21:36,8542fbf18049d804eb8de7594123c13e533d1a42,"Updated with 4/11 data
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-4-12,2020-4-12 22:22,d34e6aab1e0dd0e0125e74519489e7893d33c9dd,"Updated with data as of 4/12
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-4-13,2020-4-13 18:04,aa9a8facdf299b83ae97458dc9c55452b9ec1f53,"Updating data for 4/13
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,False,zcta
+2020-4-13,2020-4-13 21:55,1dc35df3a8d1c19587cf2cfe72567594ae079650,"Update tests-by-zcta for 4/13
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-4-14,2020-4-14 19:46,8e4627dd2f00d1de53355b01c8a9476d1c381b70,"Updated data as of 4/14
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,False,zcta
+2020-4-14,2020-4-14 21:13,b2104e26d781f6ebf4eff31afcd93cce887ff79b,"Update tests-by-zcta for 4/14
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-4-15,2020-4-15 17:45,165e694647d8319d7dc5cec6abc7d70cfc03c1ec,"Update with data for 4/15
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,False,zcta
+2020-4-15,2020-4-15 19:13,6c9e9954c58ddf7556fe52937c487af29bf6ceb4,"Update tests-by-zcta for 4/15
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,False,zcta
+2020-4-15,2020-4-15 21:09,0edd1865932520356f85e840d08dc58e621ba8e9,"Update summary.csv
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-4-16,2020-4-16 13:58,4f72feb664378246ca22a9b90ceac5f2580754a2,"Update case-hosp-death.csv
+
+Fixing header label issue.
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,False,zcta
+2020-4-16,2020-4-16 18:24,86e9f032ba7fe1a6c61591cfc2413f23b7aa387b,"Updated data 4/16
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,False,zcta
+2020-4-16,2020-4-16 18:28,b08d47482771bd35b3f25106dfc076e0a2649d29,"Update tests-by-zcta 4/16
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-4-17,2020-4-17 18:26,21916256325a11aae77bbe69029085f43592f2d1,"Update 4/17
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-4-18,2020-4-18 17:48,d3a8994716870cfdbd6cc2fb356c31588446fc25,"Updated 4/18
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,False,zcta
+2020-4-18,2020-4-18 20:00,aae7a6e40b8b07bc3a1b776cbd19bd343d072364,"Added probable-confirmed-dod.csv
+
+Added data on probable covid-19 deaths by date of death, and updated Readme to include information on this new file.
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;probable-confirmed-dod.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-4-19,2020-4-19 17:25,498c34f8534bc865b15dd09e9b560bd457ef5b9b,"Updated 4/19
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;probable-confirmed-dod.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-4-20,2020-4-20 18:30,0a74f0850087758da3579886ae8b7365e182ed9e,"Updated for 4/20
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;probable-confirmed-dod.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-4-21,2020-4-21 16:57,bbbb0f31f7a6f62b64012e8c0c5cb2d3495e6670,"Updated data 4/21
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;probable-confirmed-dod.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-4-22,2020-4-22 18:28,9147df02c9f9c8eab00719ffeec242088a666203,"Update with 4/22 data
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;probable-confirmed-dod.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-4-23,2020-4-23 17:14,93c29d8395f89d5d0eff39e1a9dcba69c820b33f,"4/23 data update
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;probable-confirmed-dod.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-4-24,2020-4-24 18:28,8f4cd591c65b11c23bc3ebae25f523df5da6ceb6,"4/24 data update
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;probable-confirmed-dod.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-4-25,2020-4-25 17:28,4bc53684bcae8ecaede11197d5f01c2d4c5f956a,"4/25 data update
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;probable-confirmed-dod.csv;summary.csv;tests-by-zcta.csv,False,zcta
+2020-4-25,2020-4-25 18:41,d3cbc0b3ec64ba98a58d28e0246cba2d223c1991,"Update README.md
+
+Added documentation on sources for New York State reports of deaths in NYC, and difference with NYC DOHMH reports.
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;probable-confirmed-dod.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-4-26,2020-4-26 17:57,da609d813e5a53dd8402ad018bc2a2d1ea7e3170,"4/26 data update
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;probable-confirmed-dod.csv;summary.csv;tests-by-zcta.csv,False,zcta
+2020-4-26,2020-4-26 19:36,03485181739e371bf80f7984f43100e04ad02d0a,"Update summary.csv
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;probable-confirmed-dod.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-4-27,2020-4-27 17:00,3ec3fa97d44c5b3054477c9c0998fa6d466bca72,"4/27 data update
+
+Includes fix to yesterday's column-header change to tests-by-zcta.csv
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;probable-confirmed-dod.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-4-28,2020-4-28 17:58,81fcf12be08aadd730d1d39c153e3fd9ab371e77,"4/28 data update
+",README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;probable-confirmed-dod.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-4-29,2020-4-29 16:58,c68db06972c3100297a615ba397245eff8b3ee9f,"4/29 data update
+
+Includes moving probable-confirmed-dod.csv into a Deaths folder
+",Deaths;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-4-30,2020-4-30 17:28,cdc5866a09ad9fa3d2c8e449dcf1803775b0a6df,"4/30 data update
+",Deaths;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-5-1,2020-5-1 16:58,9e26adc2c475d3378d7579e48e936f8a807b254b,"5/1 data update
+",Deaths;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-5-2,2020-5-2 19:14,946537b1647b4bc7c621716ef6f8e336de09068b,"5/2 data update
+",Deaths;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-5-3,2020-5-3 17:26,26d8d4c6a64c75608eb9229a41cffbb72a03685d,"5/3 data update
+",Deaths;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-5-4,2020-5-4 16:58,e9647e089c58884bb8ee5dd4972782c69327e3ee,"5/4 data update
+",Deaths;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-5-5,2020-5-5 16:57,dbf813f886c2323ac1e161b9aac966e87278ae80,"5/5 data update
+",Deaths;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-5-6,2020-5-6 16:57,d1df026ad726baf9554f3edd246b7495a8cd247f,"5/6 data update
+",Deaths;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-5-7,2020-5-7 17:28,6d7c4a94d6472a9ffc061166d099a4e5d89cd3e3,"5/7 data update
+",Deaths;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,False,zcta
+2020-5-7,2020-5-7 22:11,ac2abb7dfee986000c092d21083de683c5ad3adc,"Added geographic resources
+",Deaths;Geography-resources;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-5-8,2020-5-8 16:58,2dad8ad0c34db78a343a304ee5bcd56cf2a2194b,"5/8 data update
+",Deaths;Geography-resources;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-5-9,2020-5-9 16:28,16f92651e3cd6585df1165e74126258f59f6fb91,"5/9 data update
+",Deaths;Geography-resources;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,False,zcta
+2020-5-9,2020-5-9 19:57,00dc16b359d445c54df46e50212a50b57e088fb4,"Update probable-confirmed-dod.csv
+
+Fixed error in 5/9 commit that had msilabeled data for 5/8/2020.
+",Deaths;Geography-resources;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-5-10,2020-5-10 17:43,257399da1e7e974e9366bf4c5d1d3bfbc6dc9093,"5/10 data update
+",Deaths;Geography-resources;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-5-12,2020-5-12 01:27,5ef81d9009d68a65ef56a27ed2b2b7506952181a,"5/11 data update
+
+Today's update includes new reports of approximately 3600 cases that previously had missing addresses. These cases were diagnosed earlier in the epidemic and do not reflect recently diagnosed patients.
+",Deaths;Geography-resources;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,False,zcta
+2020-5-12,2020-5-12 17:13,6b501e5e4fbe09d49d454e00e18205dd6fec9bff,"5/12 data update
+",Deaths;Geography-resources;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,False,zcta
+2020-5-12,2020-5-12 17:13,c85892345f5e7e868c62bc7a1e13c9138dbec172,"5/12 data update - summary timestamp
+",Deaths;Geography-resources;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-5-13,2020-5-13 16:27,82ea643906d764faae2da4f9fdd1cdd922d98c73,"5/13 data update
+",Deaths;Geography-resources;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-5-14,2020-5-14 16:58,ac5cfc575709dfe8a928a7637e4d5c4ccf33d43d,"5/14 daily update
+",Deaths;Geography-resources;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-5-15,2020-5-15 17:07,ebe9ba75c55a2f1dcedbfc00396a6dc0873b71c4,"5/15 data update
+",Deaths;Geography-resources;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-5-16,2020-5-16 17:38,25021ca2c2f77589988e750a4024967fa887c85d,5/16 data upload,Deaths;Geography-resources;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-5-17,2020-5-17 17:44,d9d894ac238333fb90ff44f19ad6bc7ad227eda4,5/17 data upload,Deaths;Geography-resources;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,False,zcta
+2020-5-17,2020-5-17 18:06,67fdc83f696edf8d050b76eaf32b595b0679bf62,"5/17 data upload
+
+Added updated file with correct date formatting",Deaths;Geography-resources;README.md;boro.csv;by-age.csv;by-sex.csv;case-hosp-death.csv;summary.csv;tests-by-zcta.csv,,zcta
+2020-5-18,2020-5-18 19:22,50e60ee5c8f36198abc9b697761128dd29f10fc9,"5/18 data update
+
+This update includes major data additions, including data-by-modzcta, Boro/, Deaths/ syndromic_data, tests, and more. Previous files that included rates (boro, by-age, by-sex) now also include counts. Major additions to Readme offer more technical notes on these data.
+",Deaths;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,False,modzcta
+2020-5-18,2020-5-18 20:45,dc8d2c0dc91d3654a2eef507ffc0a99924f63e95,"Delete probable-confirmed-dod.csv
+
+All death files moved to deaths/",Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,False,modzcta
+2020-5-18,2020-5-18 20:46,c3c4d8904d2f540ac27fd924c5b413a6afe39dba,Restoring probable-confirmed-dod.csv,Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,,modzcta
+2020-5-19,2020-5-19 14:21,80df5dcbc293e03fe7af61683f4f6d3c1b940d5d,"Updated tests-by-zcta as of 5/18
+",Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,False,modzcta
+2020-5-19,2020-5-19 18:15,a68f42fe3615eaf3d36df219059eb94595cee933,"5/19 data update
+",Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,False,modzcta
+2020-5-19,2020-5-19 19:32,e57a1f574f1b0dabe588dbcf36eec42d88e1a7bc,"Fix problem with probable-confirmed-dod.csv
+
+Initial upload left out the ""probable"" column of this file. Uploading a fixed version.",Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,,modzcta
+2020-5-20,2020-5-20 16:39,0c4a03c9a39470b49a60eb1456c64fb0df9e08f8,5/20 data upload,Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,False,modzcta
+2020-5-20,2020-5-20 16:39,f9dbf482111d0e7b1329f4b13032491a87d728a8,Corrected timestamp on summary.csv,Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,,modzcta
+2020-5-21,2020-5-21 17:36,d3a18736ecd9589ab4db24f8cdf76fd40b82c661,5/21 data update,Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,False,modzcta
+2020-5-21,2020-5-21 17:37,6948736f92f1dff16b4efac1bd885207bb608f4d,corrected time stamp,Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,False,modzcta
+2020-5-21,2020-5-21 17:50,c5cb7417b5ecb836f9727d6996f97d3cd050ba8d,5/21 data update,Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,,modzcta
+2020-5-22,2020-5-22 17:41,3cbb3b744ed90befb37ea7680fac3aa7f782bb30,5/22 data update,Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,False,modzcta
+2020-5-22,2020-5-22 17:48,78466e7781bafde04d8e8826dcd97dae0c96e22f,"Added link to Open Data
+",.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,False,modzcta
+2020-5-22,2020-5-22 17:48,f6921f4729f61c9a8a11315d7e1e4ac3927ecbc7,"Merge branch 'master' of https://github.com/nychealth/coronavirus-data
+",.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,,modzcta
+2020-5-23,2020-5-23 17:28,8d88b2c06cf6b65676d58b28979731faa10c193c,Data upload 5/23,.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,,modzcta
+2020-5-24,2020-5-24 17:17,9332798c68db780365109f156892efc3d9315485,5/24 data update,.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,False,modzcta
+2020-5-24,2020-5-24 17:40,79d57e636ce99e8525059ed2c8769a04afe39fac,5/24 data update,.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,,modzcta
+2020-5-25,2020-5-25 17:22,f19c0bc29137b7a1c503c09ec0c2b2e08d27d439,5/25 data upload,.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests-by-zcta.xlsx;tests.csv,False,modzcta
+2020-5-25,2020-5-25 17:23,4aca1ebf126b83a2b4e0af00c4d3747158b0c606,tests by zcta csv upload 5/25,.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests-by-zcta.xlsx;tests.csv,False,modzcta
+2020-5-25,2020-5-25 17:23,3b8e17784bac2232b655e68dfb90fb8a7479583e,Delete tests-by-zcta.xlsx,.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,False,modzcta
+2020-5-25,2020-5-25 17:25,d812cc284651285d0e739fd1db431db1e2c5beb2,5/25 data upload,.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,False,modzcta
+2020-5-25,2020-5-25 17:27,beb0062d08db7e22e7a2c735e7bf80984dcde78c,Add files via upload,.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,False,modzcta
+2020-5-25,2020-5-25 17:27,ede6f902e30b9034e03c6b169c782691cf74963d,Delete tests-by-zcta.csv,.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests.csv,False,modzcta
+2020-5-25,2020-5-25 17:28,ea689d3d3eb427c4ae9cf1855836b4ceee8f6dab,5/25 data upload,.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,,modzcta
+2020-5-26,2020-5-26 18:09,d52fdfe48dc9b8fe446df048c681b9c19555e469,5/26 data update,.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,,modzcta
+2020-5-27,2020-5-27 16:58,498a068d6ca1765231b8526a5529ec552a0daff7,5/27 data update,.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,,modzcta
+2020-5-28,2020-5-28 16:55,65efb1f75b2714bf06fc2e76fba22315727f6943,5/28 data update,.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,,modzcta
+2020-5-29,2020-5-29 16:55,8636c5557e93e0c5f35b8c2f8ae1ed1e1077d469,Upload on 05/29,.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,,modzcta
+2020-5-30,2020-5-30 17:02,3e9a27ce96a59d9107295ade2b2d7255e605b47b,Upload on 05/30,.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,,modzcta
+2020-5-31,2020-5-31 16:59,9b5cd4d9259587d41017804dda6589a7b2ab5b3c,Upload on 05/31,.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,,modzcta
+2020-6-1,2020-6-1 17:03,62444c1cbfda69c28ed468d14be3f332ea35eea7,"06/01 data update
+
+Updated data-by-modzcta with new neighborhood names. Previous names were UHF42 parent-neighborhood names. New names come from the Neighborhood Organizing Census Committee. See Readme for more.",.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,False,modzcta
+2020-6-1,2020-6-1 17:05,c1bb9a8fddcd0d87399869a300abdd1ff304fc5e,Update README.md,.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,,modzcta
+2020-6-2,2020-6-2 16:54,53f5d7935feb50fe87132c928f45455af4149407,6/2 data update,.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,,modzcta
+2020-6-3,2020-6-3 16:57,eb3b8e99cb07bb04ff7b73c2d86e45ae68a4aab7,6/3 data upload,.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,,modzcta
+2020-6-4,2020-6-4 17:44,f094fb20c7843f218cea3bc47a06ebe8055d6127,6/4 data upload,.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,,modzcta
+2020-6-5,2020-6-5 16:59,582977c6b9e14f048305403e1b830145e0669a5e,6/5 data upload,.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,,modzcta
+2020-6-6,2020-6-6 17:03,9e0c1fe569b09ebddbccd6c9f6d519e28920e86a,6/6 data upload,.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,,modzcta
+2020-6-7,2020-6-7 16:04,6328e0b130a4dee1f6140ed3aa8264168d2a925f,6/7 data upload,.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,,modzcta
+2020-6-8,2020-6-8 16:56,3f21405a00bf7c93db5a5209b44886882feb30a6,6/8 data upload,.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,,modzcta
+2020-6-9,2020-6-9 11:24,86af7cbbe4ab178e7d179038da9bd374235f493a,"Update README.md
+
+Added detail on hospitalization sources.",.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,False,modzcta
+2020-6-9,2020-6-9 16:37,5ecc5d16eeb6f8202c3457bea892cfe8eea5dab9,"6/9 data upload
+
+Starting with 6/9 data upload, data-by-modzcta.csv includes content that was previously included in the tests-by-zcta.csv file. Moving forward, the tests-by-zcta.csv will no longer be updated.",.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,False,modzcta
+2020-6-9,2020-6-9 16:47,a9b750dc903c0bc828e409c4aeee453747a3872a,Update README.md,.gitignore;Geography-resources;README.md;boro.csv;boro;by-age.csv;by-boro.csv;by-poverty.csv;by-race.csv;by-sex.csv;case-hosp-death.csv;data-by-modzcta.csv;deaths;summary.csv;syndromic_data.csv;tests-by-zcta.csv;tests.csv,,modzcta

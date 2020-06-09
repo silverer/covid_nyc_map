@@ -43,7 +43,9 @@ cov_dat = cov_dat %>%
   filter(is.na(MODIFIED_ZCTA) == FALSE & MODIFIED_ZCTA != '') %>% 
   rename(MODZCTA = MODIFIED_ZCTA) %>% 
   mutate(MODZCTA = as.character(MODZCTA),
-         ZCTA = MODZCTA) 
+         ZCTA = MODZCTA,
+         COVID_TEST_COUNT = round(COVID_CASE_COUNT/(PERCENT_POSITIVE/100)),
+         COVID_TEST_RATE = (COVID_TEST_COUNT/POP_DENOMINATOR)*100000)
 
 
 if(GET_ACS == TRUE){
