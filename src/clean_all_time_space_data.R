@@ -126,10 +126,10 @@ ggplotly(p)
 mean_by_inc <- merged_cats %>% 
   group_by(Date, income_category) %>% 
   summarise_at(vars('PERCENT_POSITIVE', 'COVID_DEATH_RATE',
-                    'COVID_CASE_RATE'), mean)
+                    'COVID_CASE_RATE', 'COVID_TEST_RATE'), mean)
 
-p = ggplot(as.data.frame(mean_by_inc %>% filter(!is.na(COVID_CASE_RATE))), 
-           aes(Date, COVID_CASE_RATE, color = income_category))+
+p = ggplot(as.data.frame(mean_by_inc %>% filter(!is.na(COVID_TEST_RATE))), 
+           aes(Date, COVID_TEST_RATE, color = income_category))+
   geom_point()
 ggplotly(p)
 

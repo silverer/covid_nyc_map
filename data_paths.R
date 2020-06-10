@@ -3,15 +3,12 @@
 new_data <- './data/'
 #Where figures are stored
 figs <- './figures/'
+all_time_data <- './data_over_time/'
 
 #NOTE: this needs to be pulled from https://github.com/nychealth/coronavirus-data
 nyc_data <- "./coronavirus-data/"
 geo_data <- paste(nyc_data, "Geography-resources/", sep = '')
 
+merged_fname <- 'covid_data_w_census.csv'
 
-
-merged_fname <- paste('covid_data_w_census_',  "2020-06-09", sep = '')
-merged_fname <- paste(merged_fname, '.csv', sep = '')
-
-choro_fname <- paste('choropleth_inputs_',  "2020-06-09", sep = '')
-choro_fname <- paste(choro_fname, '.csv', sep = '')
+choro_fname <- 'choropleth_inputs.csv'

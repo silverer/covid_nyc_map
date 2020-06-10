@@ -60,7 +60,8 @@ def drop_duplicate_commits(df):
         keep_time = max(temp_df['commit_date_time'])
         temp_df = temp_df[temp_df['commit_date_time']==keep_time]
         if len(temp_df) > max_zips:
-            print('still too long: ', len(temp_df))
+            print('too many commits: ', len(temp_df))
+            print(temp_df['commit_date_time'].value_counts())
             temp_df = temp_df.drop_duplicates(subset = ['MODIFIED_ZCTA'])
         no_duplicates = pd.concat([no_duplicates, temp_df],
                                   ignore_index = True)
@@ -130,14 +131,14 @@ def main(args, load = False):
     commit_ids = text[::args.skip]
     base_url = "https://raw.githubusercontent.com/nychealth/coronavirus-data/"
     get_commits = generate_commit_list(repo, commit_ids)
-    get_commits.to_csv('.././data/cleaned_commit_data.csv', 
+    get_commits.to_csv('.././data_over_time/cleaned_commit_data.csv', 
                        index = False)
     get_commits = get_commits[pd.isnull(get_commits['filetype'])==False]
     get_commits = get_commits[pd.isnull(get_commits['keep'])]
     get_commits = get_commits.set_index(['commit_id'])
     print(f"loaded {len(get_commits)} commits")
     if load:
-        df = pd.read_csv('.././data/all_commit_data_dirty.csv')
+        df = pd.read_csv('.././data_over_time/all_commit_data_dirty.csv')
     else:
         for commit_id in get_commits.index: 
             print('*' * 30)
@@ -163,15 +164,14 @@ def main(args, load = False):
             temp['commit_id'] = commit_id
             df = pd.concat([df, temp], ignore_index = True)
             print(len(df))
-            if len(df) > 0 and len(df) < 600:
-                print(df.head())
             print('*'*30)
             print('\n')
-        df.to_csv('.././data/all_commit_data_dirty.csv', 
+        df.to_csv('.././data_over_time/all_commit_data_dirty.csv', 
                   index = False)
     new_df = process_df(df)
     new_df = drop_duplicate_commits(new_df)
-    new_df.to_csv('.././data/all_time_covid_data.csv', index = False)
+    new_df.to_csv('.././data_over_time/all_time_covid_data.csv', 
+                  index = False)
     return get_commits, df
 
 
@@ -183,7 +183,7 @@ if __name__ == '__main__':
     parser.add_argument('--skip', '-s', type=int, default=1, help='use every n-th commit')
     args = parser.parse_args()
 
-    get_commits, df = main(args, load = True)
+    get_commits, df = main(args)
     sys.exit(0)
     
     

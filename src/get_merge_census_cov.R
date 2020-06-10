@@ -88,14 +88,8 @@ merged = dplyr::left_join(cov_dat, acs_vars, by = 'ZCTA')
 merged = merged %>% 
   rename(Neighborhood = NEIGHBORHOOD_NAME,
          Borough = BOROUGH_GROUP)
-if(file.exists(paste(new_data, merged_fname, sep = ''))){
-  print('WARNING: FILE OVERWRITE ATTEMPTED. PLEASE UPDATE FILENAME IN DATAPATHS')
-  print('If you want to overwrite the file, copy and paste the else{} statement into the console.')
-}else{
-  if(SAVE_OUTS==TRUE){
-    write.csv(merged, paste(new_data, merged_fname, sep = ''))
-  }
-  
+if(SAVE_OUTS==TRUE){
+  write.csv(merged, paste(new_data, merged_fname, sep = ''))
 }
 
 #######################################
@@ -119,12 +113,7 @@ temp_acs = merged %>%
          value = median_income)
 
 choro_inputs = generate_choro_df(temp_acs, merged)
-if(file.exists(paste(new_data, choro_fname, sep = ''))){
-  print('WARNING: FILE OVERWRITE ATTEMPTED. PLEASE UPDATE FILENAME IN DATAPATHS')
-  print('If you want to overwrite the file, copy and paste the else{} statement into the console.')
-}else{
-  if(SAVE_OUTS==TRUE){
-    write.csv(choro_inputs,paste(new_data, choro_fname, sep = ''))
-  }
+if(SAVE_OUTS==TRUE){
+  write.csv(choro_inputs,paste(new_data, choro_fname, sep = ''))
 }
 
