@@ -4,6 +4,8 @@ library(stats)
 library(Hmisc)
 library(ggcorrplot)
 
+## Test suite for plotting geospatial data
+
 #######################################
 # Set path and global variables
 #######################################
@@ -137,11 +139,17 @@ sig_cors = all_cors %>%
   filter(COVID_CASE_RATE_P < 0.05 | COVID_DEATH_RATE_P < 0.05 |PERCENT_POSITIVE_P < 0.05) %>% 
   filter(variable != 'PERCENT_POSITIVE' & variable != 'COVID_CASE_RATE' & variable != 'COVID_DEATH_RATE')
 #view significant cors by biggest r value for percent positive
-sig_cors %>% arrange(desc(abs(PERCENT_POSITIVE))) %>% select(PERCENT_POSITIVE, PERCENT_POSITIVE_P, variable)
+sig_cors %>% 
+  arrange(desc(abs(PERCENT_POSITIVE))) %>% 
+  select(PERCENT_POSITIVE, PERCENT_POSITIVE_P, variable)
 
-sig_cors %>% arrange(desc(abs(COVID_CASE_RATE))) %>% select(COVID_CASE_RATE, COVID_CASE_RATE_P, variable)
+sig_cors %>% 
+  arrange(desc(abs(COVID_CASE_RATE))) %>% 
+  select(COVID_CASE_RATE, COVID_CASE_RATE_P, variable)
 
-sig_cors %>% arrange(desc(abs(COVID_DEATH_RATE))) %>% select(COVID_DEATH_RATE, COVID_DEATH_RATE_P, variable)
+sig_cors %>% 
+  arrange(desc(abs(COVID_DEATH_RATE))) %>% 
+  select(COVID_DEATH_RATE, COVID_DEATH_RATE_P, variable)
 write.csv(all_cors, paste(new_data, 'correlations.csv', sep = ''))
 
 for(c in colnames(corr_df)){

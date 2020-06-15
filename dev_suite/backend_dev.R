@@ -6,7 +6,7 @@ library(Hmisc)
 library(stringr)
 library(data.table)
 
-source('./src/data_paths.R')
+source('./data_paths_dev.R')
 
 #################################
 # Read in geospatial data

@@ -4,12 +4,18 @@ library(ggplot2)
 library(choroplethrZip)
 library(choroplethr)
 
+#######################################################
+#
+# Generates .csv files to be used for visualization
+#
+#######################################################
+
 #######################################
 # Set path and global variables
 #######################################
 
 setwd("~/Documents/covid_nyc_map")
-source('./data_paths.R')
+source('./src/data_paths.R')
 
 SAVE_OUTS = TRUE
 GET_ACS = FALSE

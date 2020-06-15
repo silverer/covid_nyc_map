@@ -4,12 +4,15 @@ library(ggplot2)
 library(choroplethrZip)
 library(choroplethr)
 library(plotly)
+
+## Test suite for cleaning temporal data
+
 #######################################
 # Set path and global variables
 #######################################
 
 setwd("~/Documents/covid_nyc_map")
-source('./data_paths.R')
+source('./src/data_paths.R')
 
 tests <- read.csv(paste(nyc_data, 'tests.csv', sep = ''),
                   stringsAsFactors = F)

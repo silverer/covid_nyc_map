@@ -2,6 +2,7 @@ library(dplyr)
 library(ggplot2)
 library(plotly)
 
+## Test suite for plotting temporal data
 
 setwd("~/Documents/covid_nyc_map")
 source('./src/data_paths.R')

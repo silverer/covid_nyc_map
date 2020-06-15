@@ -3,7 +3,7 @@ library(dplyr)
 library(ggplot2)
 library(plotly)
 
-source('./src/backend.R')
+source('./backend_dev.R')
 
 #################################
 # Define UI for app
@@ -24,24 +24,24 @@ ui <- fluidPage(
                        "Case rate per 100,000" = 'COVID_CASE_RATE',
                        'Death rate per 100,000' = 'COVID_DEATH_RATE',
                        'COVID testing rate per 100,000' = 'COVID_TEST_RATE'),
-                     selected = 'COVID_DEATH_RATE')),
+                     selected = 'Percent Positive COVID Tests')),
       h4(selectInput(inputId = 'demo_var',
                      label = "Census demographic variable:",
                      c("Median income" = 'median_income',
                        'Median rent' = 'median_rent',
-                       'Percent Black' = 'percent_black',
+                       'Percent with disability' = 'percent_with_disability',
                        'Percent white' = 'percent_white',
+                       'Percent Black' = 'percent_black',
                        'Percent Asian' = 'percent_asian',
                        'Percent Hispanic/Latino' = 'percent_hispanic_latino',
                        'Percent uninsured' = 'percent_uninsured',
-                       'Percent with disability' = 'percent_with_disability',
                        'Percent receiving public assistance' = 'percent_receiving_public_assistance',
                        'High school completion rate' = 'high_school_completion',
                        'College completion rate' = 'college_graduates',
                        'Percent working in managment, arts, sciences' = 'percent_in_mgmt_art_sci',
                        'Poverty rate' = 'poverty_rate',
                        'Percent spending >=35% of income on rent' = 'percent_spending_35_percent_rent'),
-                     selected = 'median_income')),
+                     selected = 'Median income')),
       h4('Plot options: '),
       checkboxInput(inputId = 'show_by_borough',
                     label = h4('Show color coding for boroughs?'),
