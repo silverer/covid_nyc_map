@@ -7,6 +7,7 @@ library(stringr)
 
 setwd("~/Documents/covid_nyc_map")
 source('./src/data_paths.R')
+source('./dev_suite/clean_temporal_data.R')
 
 acs <- read.csv(paste(new_data, 'acs_data_nyc.csv', sep = ''), 
                     stringsAsFactors = F)
@@ -21,7 +22,15 @@ all_time <- all_time %>%
   filter(!is.na(MODIFIED_ZCTA) & MODIFIED_ZCTA != '') %>% 
   mutate(ZCTA = as.character(MODIFIED_ZCTA),
          COVID_TEST_RATE = (COVID_TEST_COUNT/POP_DENOMINATOR)*100000) %>% 
-  select(-c(MODIFIED_ZCTA, MODZCTA, Positive, Total))
+  select(-c(MODIFIED_ZCTA, MODZCTA, Positive, Total)) %>% 
+  rename(`Total tests` = COVID_TEST_COUNT,
+         `Percent positive tests` = PERCENT_POSITIVE,
+         `Total deaths` = COVID_DEATH_COUNT,
+         `Positive tests` = COVID_CASE_COUNT,
+         `Death rate` = COVID_DEATH_RATE,
+         `Testing rate` = COVID_TEST_RATE,
+         `Case rate` = COVID_CASE_RATE)
+
 
 merged_all <- dplyr::left_join(all_time, acs, by = 'ZCTA')
 
@@ -49,22 +58,58 @@ merged_cats <- merged_all %>%
     percent_non_white = factor(percent_non_white, 
                                levels = rev(levels(percent_non_white))),
     
-    median_income = quantcut(median_income, q = 5),
-    median_income = factor(median_income, 
-                           levels = rev(levels(median_income))),
+    income_category = quantcut(median_income/1000, q = 4),
+    income_category = factor(income_category,
+                             levels = rev(levels(income_category))),
     
     percent_hispanic = quantcut(percent_hispanic_latino, q = 4),
-    percent_hispanic = factor(percent_hispanic, levels = rev(levels(percent_hispanic))),
+    percent_hispanic = factor(percent_hispanic, 
+                              levels = rev(levels(percent_hispanic))),
+    
+    uninsured_category = quantcut(percent_uninsured, q = 4),
+    uninsured_category = factor(uninsured_category, 
+                                levels = rev(levels(uninsured_category))),
     
     public_assistance = quantcut(percent_receiving_public_assistance, q = 5),
     public_assistance = factor(public_assistance, 
                                levels = rev(levels(public_assistance)))) %>% 
+  
   mutate(commit_date = as.Date(commit_date),
          Date = as.Date(actual_date))
 
+
+plot_disparities_over_time <- function(merged_df, grp_var,
+                                       cov_var = 'Death rate'){
+  
+  mean_df = merged_df %>% 
+    filter(!is.na(.data[[cov_var]])) %>% 
+    group_by(Date, .data[[grp_var]]) %>% 
+    summarise_at(vars('Death rate', 'Case rate', 'Testing rate'), mean)
+  
+  p = ggplot(as.data.frame(mean_df),
+             aes(Date, .data[[cov_var]], color = .data[[grp_var]]))+
+    geom_point()
+  return(p)
+}
+
+test_plot <- plot_disparities_over_time(merged_cats, 'income_category')
+ggplotly(test_plot)
+
+test_plot <- plot_disparities_over_time(merged_cats, 'income_category',
+                                        cov_var = 'Case rate')
+ggplotly(test_plot)
+
+test_plot <- plot_disparities_over_time(merged_cats, 'uninsured_category',
+                                        cov_var = 'Case rate')
+ggplotly(test_plot)
+
+test_plot <- plot_disparities_over_time(merged_cats, 'percent_black',
+                                        cov_var = 'Case rate')
+ggplotly(test_plot)
+
 rename_columns <- function(rename_list = NULL){
   pretty_columns = read.csv(paste(new_data, 'pretty_column_names.csv', sep = ''),
-                             stringsAsFactors = FALSE)
+                            stringsAsFactors = FALSE)
   pretty_columns = pretty_columns %>% 
     filter(!is.na(split_word))
   pretty_columns$l2[pretty_columns$l2 == ''] <- ' '
@@ -84,89 +129,15 @@ rename_columns <- function(rename_list = NULL){
   }
   return(plot_names)
 }
-
-rnlist = c('public_assistance', 'poverty_category')
-names(rnlist) = c("Percent receiving\npublic assistance", 'Poverty')
-testrn = rename_columns(rnlist)
-
-plot_disparities_over_time <- function(merged_df, grp_var,
-                                       cov_var = 'COVID_DEATH_RATE'){
   
-  mean_df = merged_df %>% 
-    filter(!is.na(.data[[cov_var]])) %>% 
-    group_by(Date, .data[[grp_var]]) %>% 
-    summarise_at(vars('PERCENT_POSITIVE', 'COVID_DEATH_RATE',
-                      'COVID_CASE_RATE', 'COVID_TEST_RATE'), mean)
-  p = ggplot(as.data.frame(mean_df),
-             aes(Date, .data[[cov_var]], color = .data[[grp_var]]))+
-    geom_point()
-  return(p)
+  
+get_daily_counts <- function(count_vec){
+  new_vec = rep(NA, length(count_vec))
+  for(i in 2:length(count_vec)){
+    today = count_vec[i]
+    yesterday = count_vec[i-1]
+    new_vec[i] = today - yesterday
+  }
+  return(new_vec)
 }
-pretty_cats <- merged_cats %>% 
-  rename(all_of(testrn))
-test_plot <- plot_disparities_over_time(pretty_cats, 'Percent receiving\npublic assistance')
-
-mean_by_poverty <- merged_cats %>% 
-  group_by(Date, poverty_category) %>% 
-  summarise_at(vars('PERCENT_POSITIVE', 'COVID_DEATH_RATE',
-                    'COVID_CASE_RATE'), mean)
-  
-ggplot(as.data.frame(mean_by_poverty), 
-       aes(Date, PERCENT_POSITIVE, color = poverty_category))+
-  geom_point()
-
-ggplot(as.data.frame(mean_by_poverty %>% filter(!is.na(COVID_DEATH_RATE))), 
-       aes(Date, COVID_DEATH_RATE, color = poverty_category))+
-  geom_point()
-
-ggplot(as.data.frame(mean_by_poverty %>% filter(!is.na(COVID_CASE_RATE))), 
-       aes(Date, COVID_CASE_RATE, color = poverty_category))+
-  geom_point()
-
-mean_by_race <- merged_cats %>% 
-  group_by(Date, percent_black) %>% 
-  summarise_at(vars('PERCENT_POSITIVE', 'COVID_DEATH_RATE',
-                    'COVID_CASE_RATE'), mean)
-
-p = ggplot(as.data.frame(mean_by_race %>% filter(!is.na(COVID_CASE_RATE))), 
-       aes(Date, COVID_CASE_RATE, color = percent_black))+
-  geom_point()
-ggplotly(p)
-
-p = ggplot(as.data.frame(mean_by_race %>% filter(!is.na(COVID_DEATH_RATE))), 
-           aes(Date, COVID_DEATH_RATE, color = percent_black))+
-  geom_point()
-ggplotly(p)
-
-mean_by_inc <- merged_cats %>% 
-  group_by(Date, income_category) %>% 
-  summarise_at(vars('PERCENT_POSITIVE', 'COVID_DEATH_RATE',
-                    'COVID_CASE_RATE', 'COVID_TEST_RATE'), mean)
-
-p = ggplot(as.data.frame(mean_by_inc %>% filter(!is.na(COVID_TEST_RATE))), 
-           aes(Date, COVID_TEST_RATE, color = income_category))+
-  geom_point()
-ggplotly(p)
-
-p = ggplot(as.data.frame(mean_by_inc %>% filter(!is.na(COVID_DEATH_RATE))), 
-           aes(Date, COVID_DEATH_RATE, color = income_category))+
-  geom_point()
-ggplotly(p)
-
-mean_by_percent_nonwhite <- merged_cats %>% 
-  group_by(Date, percent_non_white) %>% 
-  summarise_at(vars('PERCENT_POSITIVE', 'COVID_DEATH_RATE',
-                    'COVID_CASE_RATE'), mean)
-
-p = ggplot(as.data.frame(mean_by_percent_nonwhite %>% filter(!is.na(COVID_DEATH_RATE))), 
-           aes(Date, COVID_DEATH_RATE, color = percent_non_white))+
-  geom_point()
-ggplotly(p)
-
-
-
-
-  
-  
-  
 

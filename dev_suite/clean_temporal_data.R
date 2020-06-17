@@ -1,9 +1,4 @@
 library(dplyr)
-library(tidycensus)
-library(ggplot2)
-library(choroplethrZip)
-library(choroplethr)
-library(plotly)
 
 ## Test suite for cleaning temporal data
 
@@ -36,17 +31,6 @@ deaths <- deaths %>%
 
 daily <- dplyr::left_join(tests, deaths, by = "Date")
 
-hosp <- read.csv(paste(nyc_data, 'case-hosp-death.csv', sep = ''),
-                 stringsAsFactors = F)
-hosp <- hosp %>% 
-  mutate(Date = as.Date(DATE_OF_INTEREST, format = '%m/%d/%Y'),
-         Hospitalizations = as.double(HOSPITALIZED_COUNT)) %>% 
-  select(c(Date, Hospitalizations))
-
-daily <- dplyr::left_join(daily, hosp, by = 'Date')
-daily[is.na(daily)] <- 0
-daily['Cumulative deaths'] = cumsum(daily['Total deaths'])
-
 library(data.table)
 tests_melted <- melt(data.table(daily %>% 
                                   mutate(`Percent positive tests` = as.character(`Percent positive tests`),
@@ -54,10 +38,8 @@ tests_melted <- melt(data.table(daily %>%
                                                                           '%', sep = '')) %>% 
                                   select(Date, `Total tests`, `Positive tests`,
                                          `Percent positive tests`, `Total deaths`,
-                                         `Confirmed deaths`, `Probable deaths`,
-                                         Hospitalizations)), 
+                                         `Confirmed deaths`, `Probable deaths`)), 
                      id.vars = c('Date', 'Percent positive tests', 'Total deaths'))
-tests_melted[is.na(tests_melted)] <- 0
 
 
 
