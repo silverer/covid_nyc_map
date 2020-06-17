@@ -3,3 +3,5 @@
 coronavirus-data/
 rsconnect/
 figures/
+*.Rmd
+*.html
