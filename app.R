@@ -24,7 +24,7 @@ ui <- fluidPage(
                        "Case rate per 100,000" = 'COVID_CASE_RATE',
                        'Death rate per 100,000' = 'COVID_DEATH_RATE',
                        'COVID testing rate per 100,000' = 'COVID_TEST_RATE'),
-                     selected = 'COVID_DEATH_RATE')),
+                     selected = 'PERCENT_POSITIVE')),
       h4(selectInput(inputId = 'demo_var',
                      label = "Census demographic variable:",
                      c("Median income" = 'median_income',
@@ -135,7 +135,7 @@ ui <- fluidPage(
                   )
       ),
       br(),
-      h5('Last updated: 18 June 2020', 
+      h5('Last updated: 20 June 2020', 
          align = 'center'),
       h5(uiOutput('app_github_ref'),
          align = 'center'),

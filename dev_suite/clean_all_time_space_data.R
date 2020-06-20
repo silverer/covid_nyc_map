@@ -4,6 +4,7 @@ library(plotly)
 library(stats)
 library(gtools)
 library(stringr)
+library(RColorBrewer)
 
 setwd("~/Documents/covid_nyc_map")
 source('./src/data_paths.R')
@@ -41,38 +42,38 @@ merged_all <- dplyr::left_join(all_time, acs, by = 'ZCTA')
 # - Very high: ≥30% residents living below the FPT
 merged_cats <- merged_all %>% 
   mutate(
-    poverty_category = case_when(
+    `Poverty rate` = case_when(
       poverty_rate < 10 ~'Low',
       poverty_rate >= 10 & poverty_rate < 20 ~ 'Medium',
       poverty_rate >= 20 & poverty_rate < 30 ~ 'High',
       poverty_rate >= 30 ~'Very high'
     ),
-    poverty_category = factor(poverty_category, levels = rev(c('Low', 'Medium',
+    `Poverty rate` = factor(`Poverty rate`, levels = rev(c('Low', 'Medium',
                                                            'High', 'Very high'))),
     
-    percent_black = quantcut(percent_black), #Generate quartiles and assign as factors
-    percent_black = factor(percent_black, 
-                           levels = rev(levels(percent_black))),#Reverse levels for readability
+    `Percent Black` = quantcut(percent_black), #Generate quartiles and assign as factors
+    `Percent Black` = factor(`Percent Black`, 
+                           levels = rev(levels(`Percent Black`))),#Reverse levels for readability
     
-    percent_non_white = quantcut(percent_non_white, q = 5),
-    percent_non_white = factor(percent_non_white, 
-                               levels = rev(levels(percent_non_white))),
+    `Percent non-white` = quantcut(percent_non_white, q = 4),
+    `Percent non-white` = factor(`Percent non-white`, 
+                               levels = rev(levels(`Percent non-white`))),
     
-    income_category = quantcut(median_income/1000, q = 4),
-    income_category = factor(income_category,
-                             levels = rev(levels(income_category))),
+    `Income bracket (thousands)` = quantcut(median_income/1000, q = 4),
+    `Income bracket (thousands)` = factor(`Income bracket (thousands)`,
+                             levels = rev(levels(`Income bracket (thousands)`))),
     
-    percent_hispanic = quantcut(percent_hispanic_latino, q = 4),
-    percent_hispanic = factor(percent_hispanic, 
-                              levels = rev(levels(percent_hispanic))),
+    `Percent Hispanic/Latino` = quantcut(percent_hispanic_latino, q = 4),
+    `Percent Hispanic/Latino` = factor(`Percent Hispanic/Latino`, 
+                              levels = rev(levels(`Percent Hispanic/Latino`))),
     
-    uninsured_category = quantcut(percent_uninsured, q = 4),
-    uninsured_category = factor(uninsured_category, 
-                                levels = rev(levels(uninsured_category))),
+    `Percent uninsured` = quantcut(percent_uninsured, q = 4),
+    `Percent uninsured` = factor(`Percent uninsured`, 
+                                levels = rev(levels(`Percent uninsured`))),
     
-    public_assistance = quantcut(percent_receiving_public_assistance, q = 5),
-    public_assistance = factor(public_assistance, 
-                               levels = rev(levels(public_assistance)))) %>% 
+    `Percent rec. public assistance` = quantcut(percent_receiving_public_assistance, q = 4),
+    `Percent rec. public assistance` = factor(`Percent rec. public assistance`, 
+                               levels = rev(levels(`Percent rec. public assistance`)))) %>% 
   
   mutate(commit_date = as.Date(commit_date),
          Date = as.Date(actual_date))
@@ -85,17 +86,43 @@ plot_disparities_over_time <- function(merged_df, grp_var,
     filter(!is.na(.data[[cov_var]])) %>% 
     group_by(Date, .data[[grp_var]]) %>% 
     summarise_at(vars('Death rate', 'Case rate', 'Testing rate'), mean)
-  
+  ylabel = str_to_lower(cov_var)
+  leg_words = unlist(str_split(grp_var, " "))
+  if(length(leg_words)<3){
+    leg_title = grp_var
+  }else if(length(leg_words)==3){
+    leg_title = paste(leg_words[1], ' ', leg_words[2],
+                      '\n', leg_words[3], sep = '')
+  }else{
+    leg_title = paste(leg_words[1], ' ', leg_words[2],
+                      '\n', leg_words[3], leg_words[4], 
+                      sep = '')
+  }
   p = ggplot(as.data.frame(mean_df),
-             aes(Date, .data[[cov_var]], color = .data[[grp_var]]))+
-    geom_point()
+             aes(x = Date, y = .data[[cov_var]], 
+                 color = .data[[grp_var]]))+
+    geom_point()+
+    scale_color_brewer(palette="Spectral",name = leg_title)+
+    labs(x = '', y = paste('Cumulative', ylabel))+
+    theme(panel.background = element_blank(),
+          axis.line = element_line(colour = "black"),
+          text = element_text(size = 16),
+          axis.text.x = element_text(size = 14),
+          axis.text.y = element_text(size = 14),
+          axis.title = element_text(size = 14),
+          legend.title = element_text(size = 10),
+          legend.text = element_text(size = 10))
   return(p)
 }
 
-test_plot <- plot_disparities_over_time(merged_cats, 'income_category')
+test_plot <- plot_disparities_over_time(merged_cats, 'Income bracket (thousands)')
 ggplotly(test_plot)
 
-test_plot <- plot_disparities_over_time(merged_cats, 'income_category',
+test_plot <- plot_disparities_over_time(merged_cats, 'Income bracket (thousands)',
+                                        cov_var = 'Case rate')
+ggplotly(test_plot)
+
+test_plot <- plot_disparities_over_time(merged_cats, 'poverty_category',
                                         cov_var = 'Case rate')
 ggplotly(test_plot)
 
@@ -103,8 +130,16 @@ test_plot <- plot_disparities_over_time(merged_cats, 'uninsured_category',
                                         cov_var = 'Case rate')
 ggplotly(test_plot)
 
+test_plot <- plot_disparities_over_time(merged_cats, 'uninsured_category',
+                                        cov_var = 'Testing rate')
+ggplotly(test_plot)
+
 test_plot <- plot_disparities_over_time(merged_cats, 'percent_black',
                                         cov_var = 'Case rate')
+ggplotly(test_plot)
+
+test_plot <- plot_disparities_over_time(merged_cats, 'percent_black',
+                                        cov_var = 'Death rate')
 ggplotly(test_plot)
 
 rename_columns <- function(rename_list = NULL){

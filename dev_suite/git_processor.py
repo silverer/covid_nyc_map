@@ -106,8 +106,7 @@ def generate_commit_list(repo, commit_ids):
             commit_df.loc[i, 'filetype'] = 'modzcta'
         elif 'zcta' in ';'.join(files):
             commit_df.loc[i, 'filetype'] = 'zcta'
-        if '2020-4-26' in commit_date:
-            print('check')
+        
         #don't keep the previously added commit from the same day
         if fmt_date in commit_df['commit_date'].values:
             commit_df.loc[commit_df['commit_date']==fmt_date,
