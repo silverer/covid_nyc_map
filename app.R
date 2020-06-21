@@ -197,6 +197,7 @@ server <- function(input, output) {
     p = build_choropleth(pretty_choro_inputs, rev_names[input$demo_var],
                          labs[1])
     ggplotly(p)
+    
   })
   
   output$cov_plot <- renderPlotly({
