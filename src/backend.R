@@ -4,6 +4,7 @@ library(stats)
 library(plotly)
 library(Hmisc)
 library(stringr)
+library(data.table)
 
 source('./src/data_paths.R')
 
@@ -45,19 +46,19 @@ tests <- read.csv(paste(nyc_data, 'tests.csv', sep = ''),
                   stringsAsFactors = F)
 
 pretty_tests <- tests %>% 
-  mutate(Date = as.Date(DATE, format='%m/%d/%Y'),
+  mutate(Date = base::as.Date(DATE, format='%m/%d/%Y'),
          `Percent positive tests` = as.integer(PERCENT_POSITIVE*100),
          `Total tests` = as.double(TOTAL_TESTS),
          `Positive tests` = as.double(POSITIVE_TESTS)) %>% 
   select(-c(POSITIVE_TESTS,
             TOTAL_TESTS, PERCENT_POSITIVE, DATE))
 
-
 deaths <- read.csv(paste(nyc_data, 'deaths/probable-confirmed-dod.csv', sep = ''),
                    stringsAsFactors = F)
 deaths <- deaths %>%
-  mutate(Date = as.Date(DATE_OF_DEATH, format='%m/%d/%Y'),
+  mutate(Date = base::as.Date(DATE_OF_DEATH, format='%m/%d/%Y'),
          `Total deaths` = as.double(CONFIRMED_COUNT + PROBABLE_COUNT),
+         #`Total deaths rolling avg` = rollmean(`Total deaths`, 7),
          `Probable deaths` = as.double(PROBABLE_COUNT),
          `Confirmed deaths` = as.double(CONFIRMED_COUNT)) %>%
   select(-c(DATE_OF_DEATH, CONFIRMED_COUNT, PROBABLE_COUNT))

@@ -63,9 +63,9 @@ merged_cats <- merged_all %>%
     `Income bracket (thousands)` = factor(`Income bracket (thousands)`,
                              levels = rev(levels(`Income bracket (thousands)`))),
     
-    `Percent Hispanic/Latino` = quantcut(percent_hispanic_latino, q = 4),
-    `Percent Hispanic/Latino` = factor(`Percent Hispanic/Latino`, 
-                              levels = rev(levels(`Percent Hispanic/Latino`))),
+    `Percent Hispanic and/or Latino` = quantcut(percent_hispanic_latino, q = 4),
+    `Percent Hispanic and/or Latino` = factor(`Percent Hispanic and/or Latino`, 
+                              levels = rev(levels(`Percent Hispanic and/or Latino`))),
     
     `Percent uninsured` = quantcut(percent_uninsured, q = 4),
     `Percent uninsured` = factor(`Percent uninsured`, 
@@ -87,6 +87,27 @@ plot_disparities_over_time <- function(merged_df, grp_var,
     group_by(Date, .data[[grp_var]]) %>% 
     summarise_at(vars('Death rate', 'Case rate', 'Testing rate'), mean)
   ylabel = str_to_lower(cov_var)
+  
+  p = ggplot(as.data.frame(mean_df),
+             aes(x = Date, y = .data[[cov_var]], 
+                 color = .data[[grp_var]]))+
+    geom_point()+
+    
+    scale_color_brewer(palette="Spectral",name = grp_var)+
+    labs(x = '', y = paste('Cumulative', ylabel))+
+    theme(panel.background = element_blank(),
+          axis.line = element_line(colour = "black"),
+          text = element_text(size = 16),
+          axis.text.x = element_text(size = 14),
+          axis.text.y = element_text(size = 14),
+          axis.title = element_text(size = 14),
+          legend.title = element_blank(),
+          legend.text = element_text(size = 10))
+  
+  return(p)
+}
+
+get_legend_text <- function(grp_var){
   leg_words = unlist(str_split(grp_var, " "))
   if(length(leg_words)<3){
     leg_title = grp_var
@@ -98,49 +119,46 @@ plot_disparities_over_time <- function(merged_df, grp_var,
                       '\n', leg_words[3], leg_words[4], 
                       sep = '')
   }
-  p = ggplot(as.data.frame(mean_df),
-             aes(x = Date, y = .data[[cov_var]], 
-                 color = .data[[grp_var]]))+
-    geom_point()+
-    scale_color_brewer(palette="Spectral",name = leg_title)+
-    labs(x = '', y = paste('Cumulative', ylabel))+
-    theme(panel.background = element_blank(),
-          axis.line = element_line(colour = "black"),
-          text = element_text(size = 16),
-          axis.text.x = element_text(size = 14),
-          axis.text.y = element_text(size = 14),
-          axis.title = element_text(size = 14),
-          legend.title = element_text(size = 10),
-          legend.text = element_text(size = 10))
-  return(p)
+  return(leg_title)
 }
 
 test_plot <- plot_disparities_over_time(merged_cats, 'Income bracket (thousands)')
-ggplotly(test_plot)
+legend_title <- get_legend_text('Income bracket (thousands)')
+ggplotly(test_plot)%>% 
+  layout(legend = list(y = 0.5, title = list(text=legend_title,
+                                             font=list(size=14))))
 
 test_plot <- plot_disparities_over_time(merged_cats, 'Income bracket (thousands)',
                                         cov_var = 'Case rate')
-ggplotly(test_plot)
+ggplotly(test_plot)%>% 
+  layout(legend = list(y = 0.5, title = list(text="Income bracket\n(thousands)")))
 
-test_plot <- plot_disparities_over_time(merged_cats, 'poverty_category',
+test_plot <- plot_disparities_over_time(merged_cats, 'Poverty rate',
                                         cov_var = 'Case rate')
 ggplotly(test_plot)
 
-test_plot <- plot_disparities_over_time(merged_cats, 'uninsured_category',
+test_plot <- plot_disparities_over_time(merged_cats, 'Percent uninsured',
                                         cov_var = 'Case rate')
 ggplotly(test_plot)
 
-test_plot <- plot_disparities_over_time(merged_cats, 'uninsured_category',
+test_plot <- plot_disparities_over_time(merged_cats, 'Percent uninsured',
                                         cov_var = 'Testing rate')
 ggplotly(test_plot)
 
-test_plot <- plot_disparities_over_time(merged_cats, 'percent_black',
+test_plot <- plot_disparities_over_time(merged_cats, 'Percent Black',
                                         cov_var = 'Case rate')
 ggplotly(test_plot)
 
-test_plot <- plot_disparities_over_time(merged_cats, 'percent_black',
+test_plot <- plot_disparities_over_time(merged_cats, 'Percent Black',
                                         cov_var = 'Death rate')
 ggplotly(test_plot)
+
+test_plot <- plot_disparities_over_time(merged_cats, 'Percent Hispanic and/or Latino',
+                                        cov_var = 'Case rate')
+legend_title <- get_legend_text('Percent Hispanic and/or Latino')
+ggplotly(test_plot)%>% 
+  layout(legend = list(y = 0.5, title = list(text=legend_title,
+                                             font=list(size=14))))
 
 rename_columns <- function(rename_list = NULL){
   pretty_columns = read.csv(paste(new_data, 'pretty_column_names.csv', sep = ''),
