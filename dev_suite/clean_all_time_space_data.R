@@ -116,7 +116,8 @@ get_legend_text <- function(grp_var){
                       '\n', leg_words[3], sep = '')
   }else{
     leg_title = paste(leg_words[1], ' ', leg_words[2],
-                      '\n', leg_words[3], leg_words[4], 
+                      '\n', leg_words[3], ' ',
+                      leg_words[4], 
                       sep = '')
   }
   return(leg_title)
