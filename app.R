@@ -4,6 +4,7 @@ library(ggplot2)
 library(plotly)
 
 source('./src/backend.R')
+source('./src/app_text.R')
 
 #################################
 # Define UI for app
@@ -50,9 +51,7 @@ ui <- fluidPage(
                     label = h4('Show linear relationship between variables?'),
                     value = TRUE),
       br(),
-      h5(uiOutput("acs_ref"),
-         align = 'center'),
-      h5(uiOutput("covid_github_ref"),
+      h5(uiOutput("panel_references"),
          align = 'center')
       
     ),
@@ -135,7 +134,7 @@ ui <- fluidPage(
                   )
       ),
       br(),
-      h5('Last updated: 11 July 2020', 
+      h5('Last updated: 15 July 2020', 
          align = 'center'),
       h5(uiOutput('app_github_ref'),
          align = 'center'),
@@ -245,7 +244,7 @@ server <- function(input, output) {
                   labs[2], labs[1]))
   })
   
-  stats_url = a("What does this mean?",
+  stats_url <- a("What does this mean?",
                 href = "https://statistics.laerd.com/statistical-guides/pearson-correlation-coefficient-statistical-guide.php")
   output$stats_ref <- renderUI({
     temp = df %>% 
@@ -265,63 +264,21 @@ server <- function(input, output) {
   })
   
   #All tab text
-  github_url <- a("on Github", href="https://github.com/silverer/covid_nyc_map/")
+  
   output$app_github_ref <- renderUI({
-    tagList("The code for this app is available ", github_url)
+    tagList(git_ref)
   })
   
-  acs_url <- a("American Community Survey 2014-2018",
-               href="https://www.census.gov/programs-surveys/acs/")
-  output$acs_ref <- renderUI({
-    tagList("Demographic data are sourced from the US Census ", acs_url)
+  output$panel_references <- renderUI({
+    tagList(panel_refs)
   })
-  covid_url = a("NYC Health Dept",
-                href = "https://www.github.com/nychealth/coronavirus-data")
-  output$covid_github_ref <- renderUI({
-    tagList("COVID-19 data are sourced from the ", covid_url, " and aggregated over all time")
-  })
-  
-  #Tab 3 text
-  nyt_url <- a("New York Times",
-               href="https://www.nytimes.com/2020/05/18/nyregion/coronavirus-deaths-nyc.html")
-  nejm_url <- a("New England Journal of Medicine",
-                href = "https://www.nejm.org/doi/full/10.1056/NEJMp2012910")
-  harv_paper_url <- a("Dr. Jarvis T. Chen and Dr. Nancy Krieger (2020)",
-                      href = "https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1266/2020/04/HCPDS_Volume-19_No_1_20_covid19_RevealingUnequalBurden_HCPDSWorkingPaper_04212020-1.pdf")
-  
-  hsph_url <- a("Harvard School of Public Health.",
-                href = "https://www.hsph.harvard.edu/thegeocodingproject/covid-19-resources/")
   
   output$context_text <- renderUI({
-    intro = paste('The purpose of this project is to help visualize disparities in COVID-19 outcomes', 
-                  ' by demographic and socioeconomic characteristics of neighborhoods in New York City.',
-                  sep = ' ')
-    temp_pre_nyt = " These disparities have been reported by the "
-    temp_pre_harv = " and a working paper (in other words, not yet reviewed by other scientists) developed by "
-    #Chowkwanyun
-    temp_pre_nejm = "A recent Perspectives paper in the "
-    temp_post_nejm = " authored by Dr. Merlin Chowkwanyun and Dr. Adolph L. Reed, Jr. provides context regarding COVID-19 disparities."
-    all_tags = list(intro, tags$br(), tags$br(), 
-                    temp_pre_nyt, nyt_url, 
-                    temp_pre_harv, harv_paper_url, 
-                    " from the ", hsph_url, tags$br(), tags$br(),
-                    temp_pre_nejm, nejm_url, temp_post_nejm)
-    tagList(all_tags)
+    tagList(ref_tags)
   })
-  hire_url <- a("Columbia University Medical Center.",
-                href = "https://www.genmed.columbia.edu/research/research-centers-and-programs/columbia-outcomes-research-and-decision-analysis-corda-1")
   
-  res_gate_url <- a("ResearchGate",
-                    href = "https://www.researchgate.net/profile/Elisabeth_Silver2")
   output$about_me <- renderUI({
-    intro = paste("Elisabeth Silver developed this application. She graduated from the University of Michigan in 2018 with a Bachelor's of Science,",
-                  " and has since been working as a Research Analyst at ",
-                  sep = '')
-    rg = "To read some of the developer's peer-reviewed research, please visit her profile on "
-    contact = "For inquiries, please contact Elisabeth via email: silver.elisabeth@gmail.com"
-    all_tags = list(intro, hire_url, tags$br(),
-                    rg, res_gate_url, tags$br(), tags$br(),
-                    contact, tags$br())
+    tagList(about_me_tags)
   })
   
 }
